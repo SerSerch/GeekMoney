@@ -8,7 +8,7 @@ module.exports = {
   devServer: {
     contentBase: "./dist",
     proxy: {
-      '/api': 'http://localhost:3001'
+      '/api': 'https://floating-woodland-16538.herokuapp.com'
     }
   },
   module: {
