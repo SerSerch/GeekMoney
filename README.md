@@ -5,5 +5,4 @@
 * https://arena.ua/2017/07/10/10-prilozhenij-dlya-planirovaniya-lichnogo-byudzheta/
 *
 * https://app.moqups.com/sermiasnik@gmail.com/cESBA4yOnQ/view
-* https://realtimeboard.com/welcomeonboard/gYmZ5JpM4hbYXt9hgGz7SlCMVkGVhln6TkFlKJmTAzTbqOSVLkH7ravoOKbGRHWp
 * https://www.youtube.com/playlist?list=PLjGwM8d4Q92TaXOawUnl1uS6yvw_vYlIt
