@@ -5,10 +5,13 @@ module.exports = {
     publicPath: "/",
     filename: "main.js"
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   devServer: {
     contentBase: "./dist",
     proxy: {
-      '/api': 'https://floating-woodland-16538.herokuapp.com'
+      '/api': 'http://localhost:3001'
     }
   },
   module: {
