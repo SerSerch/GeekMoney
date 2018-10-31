@@ -15,8 +15,13 @@ export const userSigningIn = (data) => (dispatch) => {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify(request),
     }).then((res) => {
+        for (let key of res.headers.keys()){
+            console.log (key, ':',res.headers.get(key) );
+        }
+        console.log(document.cookie);
         return res.json();
     }).then((user) =>{
         console.log('input',user);

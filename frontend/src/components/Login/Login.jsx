@@ -77,6 +77,7 @@ class Login extends PureComponent {
                         /><br/>
                         <Button
                             variant="contained"
+                            type="submit"
                             color="primary"
                             onClick = {this.onLoginClicked}>
                             LogIn
