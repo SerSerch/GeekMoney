@@ -48,6 +48,7 @@ module.exports = {
             components: path.resolve(__dirname, 'src', 'Components'),
             containers: path.resolve(__dirname, 'src', 'Containers'),
             actions: path.resolve(__dirname, 'src', 'actions'),
+            reducers: path.resolve(__dirname, 'src', 'reducers'),
         }
     },
     plugins :[

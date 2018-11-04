@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import {userSignedIn, } from '../actions/users';
+import {userSignedIn, } from 'actions/users';
 
 const initialState = {
     isLogined: false,
