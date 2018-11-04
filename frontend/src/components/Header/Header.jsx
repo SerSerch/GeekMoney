@@ -12,7 +12,7 @@ class Header extends PureComponent {
     render() {
         const { match, location, history } = this.props;
         return (
-            <h1>Hello GeekMoney! {location.pathname}</h1>
+            <h1>Hello GeekMoney!</h1>
         );
     }
 }

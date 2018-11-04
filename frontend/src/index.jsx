@@ -1,6 +1,8 @@
 /********************************************************************
 * Includes															*
 *********************************************************************/
+//Migration to typography v2
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 /*Include styles*/
 import './sass/main.scss';
 
@@ -37,7 +39,6 @@ class App extends Component{
             <Fragment>
                 <div className="container">
                     <Navtop />
-                    <Header />
                     <main className="main">
                         <Switch>
                             {routes.map((route, idx) => <Route key={idx} {...route}/>)}
