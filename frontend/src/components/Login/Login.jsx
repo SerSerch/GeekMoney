@@ -52,10 +52,10 @@ class Login extends PureComponent {
         console.log(this.props);
         const {user} = this.props;
         return (
-            <div className="loginWindow">
+            <div className="login-window">
                 { (user.isLogined) ?
                     <p> Hello {user.user.email}. Ваш номер {user.user.id}</p> :
-                    <form action="#" className="login-form">
+                    <form action="#" className="login-window__form">
                         <TextField
                             id="signIn-email"
                             autoFocus={true}

@@ -11,18 +11,22 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuList from '@material-ui/core/MenuList';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+//line-menu
+//import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 
-function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-}
+const caption = {
+    "/": "GeekMoney",
+    "/login": "Авторизация",
+    "/score": "Счета",
+    "/income": "Доход",
+    "/expenses": "Расход",
+    "/transfer": "Перевод",
+};
 
 class Navtop extends PureComponent {
     constructor(props) {
@@ -81,7 +85,7 @@ class Navtop extends PureComponent {
                                 <ListItemIcon>
                                     <SendIcon />
                                 </ListItemIcon>
-                                <ListItemText inset primary="Home" />
+                                <ListItemText inset primary="Главная" />
                             </MenuItem>
                         </Link>
                         <Link to="/login" onClick={this.handleClose} className="link">
@@ -89,7 +93,7 @@ class Navtop extends PureComponent {
                                 <ListItemIcon>
                                     <SendIcon />
                                 </ListItemIcon>
-                                <ListItemText inset primary="Login" />
+                                <ListItemText inset primary="Авторизация" />
                             </MenuItem>
                         </Link>
                         <Link to="/score" onClick={this.handleClose} className="link">
@@ -97,7 +101,7 @@ class Navtop extends PureComponent {
                                 <ListItemIcon>
                                     <SendIcon />
                                 </ListItemIcon>
-                                <ListItemText inset primary="Score" />
+                                <ListItemText inset primary="Счета" />
                             </MenuItem>
                         </Link>
                         <Link to="/income" onClick={this.handleClose} className="link">
@@ -105,7 +109,7 @@ class Navtop extends PureComponent {
                                 <ListItemIcon>
                                     <SendIcon />
                                 </ListItemIcon>
-                                <ListItemText inset primary="Income" />
+                                <ListItemText inset primary="Доход" />
                             </MenuItem>
                         </Link>
                         <Link to="/expenses" onClick={this.handleClose} className="link">
@@ -113,7 +117,7 @@ class Navtop extends PureComponent {
                                 <ListItemIcon>
                                     <SendIcon />
                                 </ListItemIcon>
-                                <ListItemText inset primary="Expenses" />
+                                <ListItemText inset primary="Расход" />
                             </MenuItem>
                         </Link>
                         <Link to="/transfer" onClick={this.handleClose} className="link">
@@ -121,12 +125,12 @@ class Navtop extends PureComponent {
                                 <ListItemIcon>
                                     <SendIcon />
                                 </ListItemIcon>
-                                <ListItemText inset primary="Transfer" />
+                                <ListItemText inset primary="Перевод" />
                             </MenuItem>
                         </Link>
                     </Menu>
                     <Typography variant="h1" color="inherit" className="nav-caption _small">
-                        GeekMoney {location.pathname}
+                        {caption[location.pathname]}
                     </Typography>
                     <div>
                         <IconButton aria-label="Edit"
