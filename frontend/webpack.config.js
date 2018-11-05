@@ -3,28 +3,23 @@ const HTMLplugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: ["./src/index.js"],
-  output: {
-    path: __dirname + "/dist",
-    publicPath: "/",
-    filename: "main.js"
-  },
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
-  devServer: {
-    contentBase: "./dist",
-    proxy: {
-      '/api': 'http://localhost:3001'
-    }
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
+    entry:{
+        main: path.resolve(__dirname, 'src', 'index.jsx'),
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+    },
+    devServer: {
+        historyApiFallback: true,
+        contentBase: "./dist",
+        proxy: {
+            '/api': {
+                target: 'https://floating-woodland-16538.herokuapp.com/api/v1',
+                pathRewrite: {'^/api' : ''},
+                changeOrigin: true,
+                secure: false,
+            }
         }
     },
     module:{
