@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users,
               defaults: { format: :json },
-              path: '',
+              path: 'api/v1',
               path_names: {
-                sign_in: 'api/v1/signin',
-                sign_out: 'api/v1/signout',
-                registration: 'api/v1/signup'
+                sign_in: 'signin',
+                sign_out: 'signout',
+                registration: 'signup'
               },
               controllers: {
                 sessions: 'api/v1/users/sessions',
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   
   namespace :api do
     namespace :v1 do
-      resources :users
+      get '/user', to: 'users#show'
     end
   end
 end

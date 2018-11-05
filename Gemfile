@@ -5,7 +5,6 @@ ruby '2.5.1'
 
 # Authorization
 gem 'devise'
-gem 'devise-jwt'
 
 gem 'foreman'
 

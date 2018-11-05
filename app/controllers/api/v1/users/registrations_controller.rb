@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 module Api::V1
-
   class Users::RegistrationsController < Devise::RegistrationsController
     # before_action :configure_sign_up_params, only: [:create]
     # before_action :configure_account_update_params, only: [:update]
-    respond_to :json
+    # respond_to :json
 
     # GET /resource/sign_up
     # def new
@@ -15,17 +14,6 @@ module Api::V1
     # def create
     #   super
     # end
-    def create
-      build_resource(sign_up_params)
-      resource.save
-      render_resource(resource)
-    end
-
-    private
-
-    def sign_up_params
-      params.require(:user).permit(:email, :password)
-    end
 
     # GET /resource/edit
     # def edit

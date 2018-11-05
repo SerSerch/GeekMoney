@@ -2,7 +2,6 @@ module Api::V1
   
   class UsersController < ApplicationController
     before_action :authenticate_user!
-    respond_to :json
 
     def index
       @users = User.all.pluck(:email)
@@ -10,9 +9,7 @@ module Api::V1
     end
 
     def show
-      # byebug
-      # @user = current_user
-      render json: User.first
+      render json: User.find(current_user.id)
     end
 
   end
