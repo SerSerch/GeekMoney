@@ -1,28 +1,73 @@
 {
-  "name": "frontend",
+  "name": "geekmoney",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
     "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "cc": "node cli/createComponent.js --name",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SerSerch/GeekMoney.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SerSerch/GeekMoney/issues"
+  },
+  "homepage": "https://github.com/SerSerch/GeekMoney#readme",
+  "dependencies": {
+    "@material-ui/core": "^3.4.0",
+    "@material-ui/icons": "^3.0.1",
+    "classnames": "^2.2.6",
+    "minimist": "^1.2.0",
+    "moment": "^2.22.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-holder-component": "^1.0.5",
+    "react-redux": "^5.1.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-actions": "^2.6.4",
+    "redux-thunk": "^2.3.0",
+    "typeface-roboto": "0.0.54"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "7",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^1.0.0",
-    "http-proxy-middleware": "^0.19.0",
-    "node-sass": "^4.9.4",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-bind": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.1.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.3.1",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.10.0",
+    "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.22.0",
+    "webpack": "^4.25.0",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
-  },
-  "dependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "webpack-dev-server": "^3.1.10"
   }
 }

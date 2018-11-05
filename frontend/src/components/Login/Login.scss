@@ -1,0 +1,9 @@
+.login-window {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    &__form {
+        text-align: center;
+    }
+}

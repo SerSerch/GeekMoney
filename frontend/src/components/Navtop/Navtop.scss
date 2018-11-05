@@ -1,0 +1,16 @@
+.link {
+  text-decoration: none;
+  outline: none;
+}
+
+.navtop {}
+
+.nav {
+  &-caption._small {
+    flex-grow: 1;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
+  }
+}
