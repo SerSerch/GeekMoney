@@ -3,21 +3,26 @@ import './Navtop.scss';
 import React, { PureComponent, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import Menu from '@material-ui/core/Menu';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-//line-menu
-//import Divider from '@material-ui/core/Divider';
+import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 const caption = {
     "/": "GeekMoney",
@@ -27,18 +32,21 @@ const caption = {
     "/expenses": "Расход",
     "/transfer": "Перевод",
 };
+const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 class Navtop extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            anchorMenu: null,
+            anchorMenu: false,
             anchorEdit: null,
         };
     }
 
-    handleMenu = event => {
-        this.setState({ anchorMenu: event.currentTarget });
+    toggleDrawer = (side, open) => () => {
+        this.setState({
+            [side]: open,
+        });
     };
 
     handleEdit = event => {
@@ -56,127 +64,99 @@ class Navtop extends PureComponent {
         const { match, location, history } = this.props;
 
         return (
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton color="inherit" aria-label="Menu" className="menu__button"
-                                aria-owns={openMenu ? 'menu-appbar' : undefined}
-                                aria-haspopup="true"
-                                onClick={this.handleMenu}
-                                color="inherit"
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Menu
-                        id="menu-bar"
-                        anchorEl={anchorMenu}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'left',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'left',
-                        }}
-                        open={openMenu}
-                        onClose={this.handleClose}
-                    >
-                        <Link to="/" onClick={this.handleClose} className="link">
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <SendIcon />
-                                </ListItemIcon>
-                                <ListItemText inset primary="Главная" />
-                            </MenuItem>
-                        </Link>
-                        <Link to="/login" onClick={this.handleClose} className="link">
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <SendIcon />
-                                </ListItemIcon>
-                                <ListItemText inset primary="Авторизация" />
-                            </MenuItem>
-                        </Link>
-                        <Link to="/score" onClick={this.handleClose} className="link">
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <SendIcon />
-                                </ListItemIcon>
-                                <ListItemText inset primary="Счета" />
-                            </MenuItem>
-                        </Link>
-                        <Link to="/income" onClick={this.handleClose} className="link">
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <SendIcon />
-                                </ListItemIcon>
-                                <ListItemText inset primary="Доход" />
-                            </MenuItem>
-                        </Link>
-                        <Link to="/expenses" onClick={this.handleClose} className="link">
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <SendIcon />
-                                </ListItemIcon>
-                                <ListItemText inset primary="Расход" />
-                            </MenuItem>
-                        </Link>
-                        <Link to="/transfer" onClick={this.handleClose} className="link">
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <SendIcon />
-                                </ListItemIcon>
-                                <ListItemText inset primary="Перевод" />
-                            </MenuItem>
-                        </Link>
-                    </Menu>
-                    <Typography variant="h1" color="inherit" className="nav-caption _small">
-                        {caption[location.pathname]}
-                    </Typography>
-                    <div>
-                        <IconButton aria-label="Edit"
-                                    aria-owns={openEdit ? 'menu-appbar' : undefined}
+            <Fragment>
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton className="menu__button _left"
+                                    color="inherit" aria-label="Menu"
+                                    aria-owns={openMenu ? 'menu-appbar' : undefined}
                                     aria-haspopup="true"
-                                    onClick={this.handleEdit}
+                                    onClick={this.toggleDrawer("anchorMenu", true)}
                                     color="inherit"
                         >
-                            <MoreIcon />
+                            <MenuIcon />
                         </IconButton>
-                        <Menu
-                            id="edit-bar"
-                            anchorEl={anchorEdit}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={openEdit}
-                            onClose={this.handleClose}
-                        >
-                            <MenuItem>
+                        <Typography variant="h1" color="inherit" className="menu__caption _small">
+                            {caption[location.pathname]}
+                        </Typography>
+                        <div>
+                            <IconButton className="menu__button _right"
+                                        aria-label="Edit"
+                                        aria-owns={openEdit ? 'menu-appbar' : undefined}
+                                        aria-haspopup="true"
+                                        onClick={this.handleEdit}
+                                        color="inherit"
+                            >
+                                <MoreIcon />
+                            </IconButton>
+                            <Menu
+                                id="edit-bar"
+                                anchorEl={anchorEdit}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={openEdit}
+                                onClose={this.handleClose}
+                            >
+                                <MenuItem>
+                                    <ListItemIcon>
+                                        <SendIcon />
+                                    </ListItemIcon>
+                                    <ListItemText inset primary="Sent mail" />
+                                </MenuItem>
+                                <MenuItem>
+                                    <ListItemIcon>
+                                        <DraftsIcon />
+                                    </ListItemIcon>
+                                    <ListItemText inset primary="Drafts" />
+                                </MenuItem>
+                                <MenuItem>
+                                    <ListItemIcon>
+                                        <InboxIcon />
+                                    </ListItemIcon>
+                                    <ListItemText inset primary="Inbox" />
+                                </MenuItem>
+                            </Menu>
+                        </div>
+                    </Toolbar>
+                </AppBar>
+                <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS}
+                                 open={openMenu}
+                                 onClose={this.toggleDrawer('anchorMenu', false)}
+                                 onOpen={this.toggleDrawer('anchorMenu', true)}
+                >
+                    <div
+                        tabIndex={0}
+                        role="button"
+                        onClick={this.toggleDrawer('anchorMenu', false)}
+                        onKeyDown={this.toggleDrawer('anchorMenu', false)}
+                    >
+                        <List component="nav">
+                            <ListItem button onClick={this.toggleDrawer}>
                                 <ListItemIcon>
-                                    <SendIcon />
+                                    <ChevronLeftIcon />
                                 </ListItemIcon>
-                                <ListItemText inset primary="Sent mail" />
-                            </MenuItem>
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <DraftsIcon />
-                                </ListItemIcon>
-                                <ListItemText inset primary="Drafts" />
-                            </MenuItem>
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <InboxIcon />
-                                </ListItemIcon>
-                                <ListItemText inset primary="Inbox" />
-                            </MenuItem>
-                        </Menu>
+                            </ListItem>
+                            <Divider />
+                            {Object.keys(caption).map(link => (
+                                <Link to={link} className="menu__link" key={link}>
+                                    <ListItem button>
+                                        <ListItemIcon>
+                                            <SendIcon/>
+                                        </ListItemIcon>
+                                        <ListItemText inset primary={caption[link]}/>
+                                    </ListItem>
+                                </Link>
+                            ))}
+                        </List>
                     </div>
-                </Toolbar>
-            </AppBar>
+                </SwipeableDrawer>
+            </Fragment>
         );
     }
 }
