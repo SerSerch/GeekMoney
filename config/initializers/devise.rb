@@ -5,15 +5,15 @@
 Devise.setup do |config|
 
   # JWT config
-  config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.jwt[:secret]
-    jwt.dispatch_requests = [
-      ['POST', %r{^/login$}]
-    ]
-    jwt.revocation_requests = [
-      ['DELETE', %r{^/logout$}]
-    ]
-  end
+  # config.jwt do |jwt|
+  #   jwt.secret = Rails.application.credentials.jwt[:secret]
+  #   jwt.dispatch_requests = [
+  #     ['POST', %r{^/login$}]
+  #   ]
+  #   jwt.revocation_requests = [
+  #     ['DELETE', %r{^/logout$}]
+  #   ]
+  # end
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
