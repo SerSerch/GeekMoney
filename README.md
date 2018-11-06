@@ -59,7 +59,8 @@ POST
 {
     "user": {
         "email": "test51@test.ru",
-        "password": "111111"
+        "password": "111111",
+        "remember_me": true
     }
 }
 ```
@@ -85,7 +86,8 @@ POST
 {
     "user": {
         "email": "test51@test.ru",
-        "password": "111111"
+        "password": "111111",
+        "remember_me": true
     }
 }
 ```
@@ -102,6 +104,24 @@ POST
 ```json
 {
     "error": "Email has already been taken"
+}
+```
+Пользователь<br>
+http://localhost:8080/api/user<br>
+POST<br>
+Ответ
+```json
+{
+    "id": 1,
+    "email": "mail",
+    "created_at": "date",
+    "updated_at": "date"
+}
+```
+Ошибка
+```json
+{
+    "error": "You need to sign in or sign up before continuing."
 }
 ```
 Выход<br>
