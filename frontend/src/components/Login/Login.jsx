@@ -5,14 +5,30 @@ import React, { PureComponent } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import handleChange from 'containers/handleChange';
 
 class Login extends PureComponent {
-    
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+            password: '',
+        }
+    }
+
+    componentDidMount() {
+        const { userSigningAuth } = this.props;
+        userSigningAuth();
+    }
+
+    onHandleChange = (event) => {
+        handleChange(event, this);
+    };
+
     onLoginClicked = (event) => {
-        this.props.userSigningIn({
-            email : this.logininput.value,
-            password : this.password.value,
-        });
+        const { userSigningIn } = this.props;
+        userSigningIn(this.state);
     };
 
     render()
@@ -27,22 +43,22 @@ class Login extends PureComponent {
                             id="signIn-email"
                             autoFocus={true}
                             label="E-mail"
-                            name={"email"}
+                            name="email"
                             margin="normal"
-                            placeholder="example@example.ex"
+                            placeholder="test12@test.ru"
                             required={true}
-                            type={"email"}
-                            inputRef = {(input) => {this.logininput = input}}
-                            value="test12@test.ru"
+                            type="email"
+                            onChange={this.onHandleChange}
                         /> <br/>
                         <TextField
                             required={true}
                             id="signIn-password"
+                            name="password"
                             label="Password"
                             type="password"
                             margin="normal"
-                            inputRef = {(password) => {this.password = password}}
-                            value="111111"
+                            placeholder="111111"
+                            onChange={this.onHandleChange}
                         /><br/>
                         <Button
                             variant="contained"

@@ -3,7 +3,7 @@ import { createAction } from 'redux-actions';
 // Actions
 export const userSignedIn = createAction('[User] signedIn');
 //export const userSignedOut = createAction('[User] signedOut');
-//export const userSignedAuth = createAction('[User] signedAuth');
+export const userSignedAuth = createAction('[User] signedAuth');
 
 //обыкновенные функции
 export const userSigningIn = (data) => (dispatch) => {
@@ -57,9 +57,7 @@ export const userSigningIn = (data) => (dispatch) => {
 //     }).catch((err) => console.log('error catch', err));
 // };
 //
-// export const userSigningAuth = (data) => (dispatch) => {
-//     if (user.email) {
-//         console.log('Auth ', user);
-//         dispatch(userSignedAuth(user));
-//     }
-// };*/
+export const userSigningAuth = () => (dispatch) => {
+    const user = JSON.parse(localStorage.user);
+        dispatch(userSignedAuth(user));
+};

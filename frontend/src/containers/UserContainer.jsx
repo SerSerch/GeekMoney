@@ -1,23 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { userSigningIn, /*userSigningOut, userSigningAuth*/ } from 'actions/users';
+import { userSigningIn, /*userSigningOut,*/ userSigningAuth } from 'actions/users';
 import Login from 'components/Login';
 
-class UserContainer extends PureComponent {
-    /*
-    componentDidMount() {
-        console.log('Auth 0 ', JSON.parse(localStorage.user));
-        this.props.userSigningAuth(JSON.parse(localStorage.user));
-    }
-*/
-    render() {
-        const { user, userSigningIn } = this.props;
-
-        return (
-            <Login user={ user } userSigningIn={ userSigningIn }/>
-        )
-    }
-}
 
 function mapStateToProps(state, ownProps) {
     return {
@@ -33,8 +18,8 @@ function mapDispatchToProps(dispatch, props) {
         ...props,
         userSigningIn: (data) => dispatch(userSigningIn(data)),
         //userSigningOut: (data) => dispatch(userSigningOut(data)),
-        //userSigningAuth: (data) => dispatch(userSigningOut(data)),
+        userSigningAuth: (data) => dispatch(userSigningAuth(data)),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
