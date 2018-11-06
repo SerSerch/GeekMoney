@@ -11,27 +11,21 @@ import  React, {Component, Fragment} from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
+//import { createStore, applyMiddleware} from 'redux';
+//import thunk from 'redux-thunk';
 
 /*Import user components*/
-
 import Navtop from 'components/Navtop';
-import Header from 'components/Header';
 import Footer from 'components/Footer';
-//import 'react-holder-component';
 
-import rootReduser from './reducers';
+//import 'react-holder-component';
+//import rootReduser from './reducers';
 import routes from './routes';
+import { store } from './store';
 
 /********************************************************************
 * Main															*
 *********************************************************************/
-const store = createStore(
-    rootReduser,
-    applyMiddleware(thunk),
-);
-
 
 class App extends Component{
     render(){
