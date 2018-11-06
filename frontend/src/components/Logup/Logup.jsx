@@ -1,4 +1,4 @@
-import './Login.scss';
+import './Logup.scss';
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,10 +8,10 @@ import Button from '@material-ui/core/Button';
 
 import handleChange from 'containers/handleChange';
 
-class Login extends PureComponent {
+class Logup extends PureComponent {
     constructor(props) {
         super(props);
-        //todo сделать галочку запомнить меня
+
         this.state = {
             email: '',
             password: '',
@@ -28,9 +28,9 @@ class Login extends PureComponent {
         handleChange(event, this);
     };
 
-    onLoginClicked = (event) => {
-        const { userSigningIn } = this.props;
-        userSigningIn(this.state);
+    onLogupClicked = (event) => {
+        const { userSigningUp } = this.props;
+        userSigningUp(this.state);
     };
 
     onOutClicked = (event) => {
@@ -50,7 +50,8 @@ class Login extends PureComponent {
                             color="primary"
                             >
                             Начать
-                        </Button></Link> <a href="/login"><Button
+                        </Button></Link>
+                        <a href="/logup"><Button
                             variant="contained"
                             color="primary"
                             onClick = {this.onOutClicked}>
@@ -81,7 +82,7 @@ class Login extends PureComponent {
                         <Button
                             variant="contained"
                             color="primary"
-                            onClick = {this.onLoginClicked}>
+                            onClick = {this.onLogupClicked}>
                             LogIn
                         </Button>
                         {(user.error) ?
@@ -94,4 +95,4 @@ class Login extends PureComponent {
     }
 }
 
-export default Login;
+export default Logup;

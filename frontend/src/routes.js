@@ -1,6 +1,7 @@
 import Landing from 'components/Landing';
 //import Login from 'components/Login';
-import Login from 'containers/UserContainer';
+import Login from 'containers/UserLoginContainer';
+import Logup from 'containers/UserLogupContainer';
 import Score from 'components/Score';
 import Income from 'components/Income';
 import Expenses from 'components/Expenses';
@@ -16,6 +17,11 @@ export default [
     {
         path: '/login',
         component: Login,
+        exact: true
+    },
+    {
+        path: '/logup',
+        component: Logup,
         exact: true
     },
     {

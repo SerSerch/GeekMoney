@@ -27,6 +27,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 const caption = {
     "/": "GeekMoney",
     "/login": "Авторизация",
+    "/logup": "Регистрация",
+    "/api/user": "Пользователь",
+    "/api/signout": "Выход",
     "/score": "Счета",
     "/income": "Доход",
     "/expenses": "Расход",
