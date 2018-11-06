@@ -58,6 +58,8 @@ export const userSigningIn = (data) => (dispatch) => {
 // };
 //
 export const userSigningAuth = () => (dispatch) => {
-    const user = JSON.parse(localStorage.user);
+    if (localStorage.user) {
+        const user = JSON.parse(localStorage.user);
         dispatch(userSignedAuth(user));
+    }
 };
