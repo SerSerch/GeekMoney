@@ -1,24 +1,52 @@
-# README
+# GeekMoney
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* https://habr.com/post/371161/
+* https://4pda.ru/2015/05/27/223052/?utm_source=newer
+* https://arena.ua/2017/07/10/10-prilozhenij-dlya-planirovaniya-lichnogo-byudzheta/
+*
+* https://app.moqups.com/sermiasnik@gmail.com/cESBA4yOnQ/view
+* https://www.youtube.com/playlist?list=PLjGwM8d4Q92TaXOawUnl1uS6yvw_vYlIt
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Приложение
+Вэб приложение для финансового учета расхода средств пользователей.
+Рассчитано для пользователей, которые ежедневно ведут учет своих расходов.
+<br><br>
+## Преимущества:
+Бесплатно<br>
+Гибкость в использовании<br>
+Приватность пользователей<br>
+Доступ с любого устройства в браузере*<br>
+Приложения данного типа пользуются популярностью
+<br><br>
+## Функционал
+* Регистрация пользователя
+* Курс валют
+* Валюта
+* Калькулятор
+* Календарь
+* Экспорт
+* Рез. копирование
+* Синхронизация
+* Защита
+* Язык
+* Удалить все
+*
+* Планирование
+* Цели
+* Баланс
+* Счета
+* Долги
+* Крнтрагент
+* Группы
+* День
+* Неделя
+* Месяц
+* Год
+* Дата
+<br><br>
+## Технологии
+* Ruby rel
+* React
+* БЭМ
+* Material-UI
+* Google API v4
