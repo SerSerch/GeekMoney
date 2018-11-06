@@ -1,6 +1,7 @@
 import './Login.scss';
 
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -31,13 +32,29 @@ class Login extends PureComponent {
         userSigningIn(this.state);
     };
 
+    onOutClicked = (event) => {
+        //todo сделать нормальный выход пользователя
+        delete localStorage.user;
+    };
+
     render()
         {
         const {user} = this.props;
         return (
             <div className="login-window">
                 { (user.isLogined) ?
-                    <p> Hello {user.user.email}. Ваш номер {user.user.id}</p> :
+                    <p> Вы уже вошли как {user.user.email}. Ваш номер {user.user.id}
+                        <Link to="/score"><Button
+                            variant="contained"
+                            color="primary"
+                            >
+                            Начать
+                        </Button></Link> <a href="/login"><Button
+                            variant="contained"
+                            color="primary"
+                            onClick = {this.onOutClicked}>
+                            Выход
+                        </Button></a></p> :
                     <form action="#" className="login-window__form">
                         <TextField
                             id="signIn-email"

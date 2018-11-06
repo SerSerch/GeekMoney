@@ -36,27 +36,24 @@ export const userSigningIn = (data) => (dispatch) => {
     }
 };
 
-// export const userSigningOut = (data) => (dispatch) => {
-//     const request = {
-//         user: data,
-//     };
-//     console.log("out")
-//     fetch('/api/signout', {
-//         method: 'post',
-//         headers: {
-//             'Accept': 'application/json, text/plain, */*',
-//             'Content-Type': 'application/json'
-//         },
-//         credentials: 'include',
-//         body: JSON.stringify(request),
-//     }).then((res) => {
-//         return res.json();
-//     }).then((user) =>{
-//         console.log('input ',user);
-//         dispatch(userSignedOut(user));
-//     }).catch((err) => console.log('error catch', err));
-// };
-//
+export const userSigningOut = (data) => (dispatch) => {
+    console.log("out")
+    fetch('/api/signout', {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(request),
+    }).then((res) => {
+        return res.json();
+    }).then((user) =>{
+        console.log('input ',user);
+        dispatch(userSignedOut(user));
+    }).catch((err) => console.log('error catch', err));
+};
+
 export const userSigningAuth = () => (dispatch) => {
     if (localStorage.user) {
         const user = JSON.parse(localStorage.user);
