@@ -50,3 +50,66 @@
 * БЭМ
 * Material-UI
 * Google API v4
+<br><br>
+## API
+Авторизация<br>
+http://localhost:8080/api/signin<br>
+POST
+ ```json
+{
+    "user": {
+        "email": "test51@test.ru",
+        "password": "111111"
+    }
+}
+```
+Ответ
+```json
+{
+    "id": 1,
+    "email": "mail",
+    "created_at": "date",
+    "updated_at": "date"
+}
+```
+Ошибка
+```json
+{
+    "error": "Invalid Email or password."
+}
+```
+Регистрация<br>
+http://localhost:8080/api/signup<br>
+POST
+ ```json
+{
+    "user": {
+        "email": "test51@test.ru",
+        "password": "111111"
+    }
+}
+```
+Ответ
+```json
+{
+    "id": 1,
+    "email": "mail",
+    "created_at": "date",
+    "updated_at": "date"
+}
+```
+Ошибка
+```json
+{
+    "error": "Email has already been taken"
+}
+```
+Выход<br>
+http://localhost:8080/api/signout<br>
+POST<br>
+Ответ
+```json
+{
+    "out": true
+}
+```
