@@ -9,7 +9,6 @@ const initialState = {
 export default handleActions({
     //наименование Action которое хотим обработать
     [userSignedIn]: (state, action) => {
-        console.log('red u');
         //как будет меняться состояние по сигналу
         //что будем делать в зависимости то того, что пришло
         let res = {};
