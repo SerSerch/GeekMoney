@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Api::V1
+
   class Users::SessionsController < Devise::SessionsController
     skip_before_action :verify_signed_out_user
     # before_action :configure_sign_in_params, only: [:create]
@@ -16,8 +17,11 @@ module Api::V1
 
     # DELETE /resource/sign_out
     def destroy
-      super
+      # super
       cookies.delete :remember_user_token
+      render json: {
+        "out": true
+      }
     end
 
     # protected
@@ -27,4 +31,5 @@ module Api::V1
     #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
     # end
   end
+
 end
