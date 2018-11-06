@@ -17,6 +17,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  database: geekmoney
   port: 5432
   host: localhost
   username: geekmoney
@@ -27,7 +28,7 @@ default: &default
 
 development:
   <<: *default
-  database: geekmoney_dev
+  # database: geekmoney_dev
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
