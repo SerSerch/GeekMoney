@@ -12,12 +12,25 @@ module Api::V1
 
     # POST /resource/sign_in
     # def create
-    #   super
+      # self.resource = warden.authenticate!(auth_options)
+      # set_flash_message(:notice, :signed_in) if is_navigational_format?
+      # sign_in(resource_name, resource)
+      # respond_with resource, :location => after_sign_in_path_for(resource)
+      # if true
+      #   render json: {
+      #     "Hi": "dsf"
+      #   }
+      # else
+      #   render json: {
+      #     "dfsdf": "dsf"
+      #   }
     # end
 
     # DELETE /resource/sign_out
     def destroy
-      # super
+      signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+      set_flash_message! :notice, :signed_out if signed_out
+      yield if block_given?
       cookies.delete :remember_user_token
       render json: {
         "out": true

@@ -14,6 +14,7 @@ module Api::V1
     # POST /resource
     # def create
     #   super
+      # byebug
     # end
 
     # GET /resource/edit

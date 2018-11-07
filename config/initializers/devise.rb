@@ -4,6 +4,10 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
+
+  config.warden do |manager|
+    manager.failure_app = CustomFailureApp
+  end
   # JWT config
   # config.jwt do |jwt|
   #   jwt.secret = Rails.application.credentials.jwt[:secret]
