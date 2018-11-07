@@ -67,7 +67,7 @@ class Navtop extends PureComponent {
 
         return (
             <Fragment>
-                <AppBar position="static">
+                <AppBar position="fixed">
                     <Toolbar>
                         <IconButton className="menu__button _left"
                                     color="inherit" aria-label="Menu"

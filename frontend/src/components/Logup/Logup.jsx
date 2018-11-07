@@ -8,6 +8,10 @@ import Button from '@material-ui/core/Button';
 
 import { handleInputChange } from 'containers/handleChange';
 import FormGroup from "@material-ui/core/FormGroup/FormGroup";
+import Paper from "@material-ui/core/Paper/Paper";
+import Avatar from "@material-ui/core/Avatar/Avatar";
+
+import LockIcon from '@material-ui/icons/LockOutlined';
 
 class Logup extends PureComponent {
     constructor(props) {
@@ -40,7 +44,7 @@ class Logup extends PureComponent {
     };
 
     render()
-        {
+    {
         const {user} = this.props;
         return (
             <div className="login-window">
@@ -49,7 +53,7 @@ class Logup extends PureComponent {
                         <Link to="/score" className="link"><Button
                             variant="contained"
                             color="primary"
-                            >
+                        >
                             Начать
                         </Button></Link> <Button
                             variant="contained"
@@ -57,38 +61,44 @@ class Logup extends PureComponent {
                             onClick = {this.onLogoutClicked}>
                             Выход
                         </Button></p> :
-                    <FormGroup className="login-window__form">
-                        <TextField
-                            id="signIn-email"
-                            autoFocus={true}
-                            label="E-mail"
-                            name="email"
-                            margin="normal"
-                            placeholder="test12@test.ru"
-                            required={true}
-                            type="email"
-                            onChange={this.onHandleInputChange}
-                        />
-                        <TextField
-                            required={true}
-                            id="signIn-password"
-                            name="password"
-                            label="Password"
-                            type="password"
-                            margin="normal"
-                            placeholder="111111"
-                            onChange={this.onHandleInputChange}
-                        />
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick = {this.onLogupClicked}>
-                            Зарегистрироваться
-                        </Button>
-                        {(user.error) ?
-                            <p className='error-meassage'>{user.error}</p> :
-                            ''}
-                    </FormGroup>
+                    <Paper className="login-window__paper">
+                        <FormGroup  className="login-window__form">
+                            <Avatar className="login-window__avatar _lock">
+                                <LockIcon />
+                            </Avatar>
+                            <TextField
+                                id="signIn-email"
+                                autoFocus={true}
+                                label="Электронная почта"
+                                name="email"
+                                margin="normal"
+                                placeholder="test12@test.ru"
+                                required={true}
+                                type="email"
+                                onChange={this.onHandleInputChange}
+                            />
+                            <TextField
+                                required={true}
+                                id="signIn-password"
+                                name="password"
+                                label="Пароль"
+                                type="password"
+                                margin="normal"
+                                placeholder="111111"
+                                onChange={this.onHandleInputChange}
+                            />
+                            <Button
+                                className="login-window__button _send"
+                                variant="contained"
+                                color="primary"
+                                onClick = {this.onLogupClicked}>
+                                Зарегистрироваться
+                            </Button>
+                            {(user.error) ?
+                                <p className='error-meassage'>{user.error}</p> :
+                                ''}
+                        </FormGroup>
+                    </Paper>
                 }
             </div>
         );

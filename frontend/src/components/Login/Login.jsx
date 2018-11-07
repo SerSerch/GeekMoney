@@ -8,6 +8,10 @@ import Button from '@material-ui/core/Button';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Paper from '@material-ui/core/Paper';
+import Avatar from '@material-ui/core/Avatar';
+
+import LockIcon from '@material-ui/icons/LockOutlined';
 
 import { handleInputChange, handleCheckboxChange } from 'containers/handleChange';
 
@@ -46,7 +50,7 @@ class Login extends PureComponent {
     };
 
     render()
-        {
+    {
         const {user} = this.props;
         return (
             <div className="login-window">
@@ -55,7 +59,7 @@ class Login extends PureComponent {
                         <Link to="/score"  className="link"><Button
                             variant="contained"
                             color="primary"
-                            >
+                        >
                             Начать
                         </Button></Link> <Button
                             variant="contained"
@@ -63,48 +67,54 @@ class Login extends PureComponent {
                             onClick = {this.onLogoutClicked}>
                             Выход
                         </Button></p> :
-                    <FormGroup className="login-window__form">
-                        <TextField
-                            id="signIn-email"
-                            autoFocus={true}
-                            label="E-mail"
-                            name="email"
-                            margin="normal"
-                            placeholder="test12@test.ru"
-                            required={true}
-                            type="email"
-                            onChange={this.onHandleInputChange}
-                        />
-                        <TextField
-                            required={true}
-                            id="signIn-password"
-                            name="password"
-                            label="Password"
-                            type="password"
-                            margin="normal"
-                            placeholder="111111"
-                            onChange={this.onHandleInputChange}
-                        />
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick = {this.onLoginClicked}>
-                            Войти
-                        </Button>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    onChange={this.onHandleCheckChange}
-                                    name="remember_me"
-                                    checked={this.state.remember_me}
-                                />
-                            }
-                            label="Запомнить меня"
-                        />
-                        {(user.error) ?
-                            <p className='error-meassage'>{user.error}</p> :
-                            ''}
-                    </FormGroup>
+                    <Paper className="login-window__paper">
+                        <FormGroup  className="login-window__form">
+                            <Avatar className="login-window__avatar _lock">
+                                <LockIcon />
+                            </Avatar>
+                            <TextField
+                                id="signIn-email"
+                                autoFocus={true}
+                                label="Электронная почта"
+                                name="email"
+                                margin="normal"
+                                placeholder="test12@test.ru"
+                                required={true}
+                                type="email"
+                                onChange={this.onHandleInputChange}
+                            />
+                            <TextField
+                                required={true}
+                                id="signIn-password"
+                                name="password"
+                                label="Пароль"
+                                type="password"
+                                margin="normal"
+                                placeholder="111111"
+                                onChange={this.onHandleInputChange}
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        onChange={this.onHandleCheckChange}
+                                        name="remember_me"
+                                        checked={this.state.remember_me}
+                                    />
+                                }
+                                label="Запомнить меня"
+                            />
+                            <Button
+                                className="login-window__button _send"
+                                variant="contained"
+                                color="primary"
+                                onClick = {this.onLoginClicked}>
+                                Войти
+                            </Button>
+                            {(user.error) ?
+                                <p className='error-meassage'>{user.error}</p> :
+                                ''}
+                        </FormGroup>
+                    </Paper>
                 }
             </div>
         );
