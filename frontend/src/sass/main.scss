@@ -53,8 +53,12 @@ body {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;
-	height: 50px;
 	text-align: center;
+}
+
+.link {
+	text-decoration: none;
+	outline: none;
 }
 
 @import "media";

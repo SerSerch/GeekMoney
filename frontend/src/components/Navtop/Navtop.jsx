@@ -29,7 +29,6 @@ const caption = {
     "/login": "Авторизация",
     "/logup": "Регистрация",
     "/api/user": "Пользователь",
-    "/api/signout": "Выход",
     "/score": "Счета",
     "/income": "Доход",
     "/expenses": "Расход",
@@ -147,7 +146,7 @@ class Navtop extends PureComponent {
                             </ListItem>
                             <Divider />
                             {Object.keys(caption).map(link => (
-                                <Link to={link} className="menu__link" key={link}>
+                                <Link to={link} className="link" key={link}>
                                     <ListItem button>
                                         <ListItemIcon>
                                             <SendIcon/>

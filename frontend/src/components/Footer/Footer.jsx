@@ -10,7 +10,7 @@ class Footer extends PureComponent {
   
     render() {
         return (
-            <div className="footer">&copy;GeekMoney</div>
+            <div className="footer">&copy;&nbsp;GeekMoney</div>
         );
     }
 }
