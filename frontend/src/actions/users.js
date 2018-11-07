@@ -3,7 +3,7 @@ import { createAction } from 'redux-actions';
 // Actions
 export const userSignedIn = createAction('[User] signedIn');
 export const userSignedUp = createAction('[User] signedUp');
-//export const userSignedOut = createAction('[User] signedOut');
+export const userSignedOut = createAction('[User] signedOut');
 export const userSignedAuth = createAction('[User] signedAuth');
 
 //обыкновенные функции
@@ -24,7 +24,9 @@ export const userSigningIn = (data) => (dispatch) => {
         }).then((res) => {
             return res.json();
         }).then((user) => {
-            localStorage.user = JSON.stringify(user);
+            const storage = data.remember_me ? localStorage : sessionStorage;
+            storage.user = JSON.stringify(user);
+
             //обработчик события
             dispatch(userSignedIn(user));
         }).catch((err) => console.log('error catch', err));
@@ -48,7 +50,9 @@ export const userSigningUp = (data) => (dispatch) => {
         }).then((res) => {
             return res.json();
         }).then((user) => {
-            localStorage.user = JSON.stringify(user);
+            const storage = data.remember_me ? localStorage : sessionStorage;
+            storage.user = JSON.stringify(user);
+
             //обработчик события
             dispatch(userSignedUp(user));
         }).catch((err) => console.log('error catch', err));
@@ -56,19 +60,13 @@ export const userSigningUp = (data) => (dispatch) => {
 };
 
 export const userSigningOut = (data) => (dispatch) => {
-    console.log("out")
     fetch('/api/signout', {
-        method: 'post',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify(request),
+        method: 'delete',
     }).then((res) => {
         return res.json();
-    }).then((user) =>{
-        console.log('input ',user);
+    }).then((user) => {
+        delete localStorage.user;
+        delete sessionStorage.user;
         dispatch(userSignedOut(user));
     }).catch((err) => console.log('error catch', err));
 };

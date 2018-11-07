@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import handleChange from 'containers/handleChange';
+import { handleInputChange } from 'containers/handleChange';
+import FormGroup from "@material-ui/core/FormGroup/FormGroup";
 
 class Logup extends PureComponent {
     constructor(props) {
@@ -15,7 +16,7 @@ class Logup extends PureComponent {
         this.state = {
             email: '',
             password: '',
-            remember_me: true,
+            remember_me: false,
         }
     }
 
@@ -24,8 +25,8 @@ class Logup extends PureComponent {
         userSigningAuth();
     }
 
-    onHandleChange = (event) => {
-        handleChange(event, this);
+    onHandleInputChange = (event) => {
+        handleInputChange(event, this);
     };
 
     onLogupClicked = (event) => {
@@ -33,9 +34,9 @@ class Logup extends PureComponent {
         userSigningUp(this.state);
     };
 
-    onOutClicked = (event) => {
-        //todo сделать нормальный выход пользователя
-        delete localStorage.user;
+    onLogoutClicked = (event) => {
+        const { userSigningOut } = this.props;
+        userSigningOut(this.state);
     };
 
     render()
@@ -45,19 +46,18 @@ class Logup extends PureComponent {
             <div className="login-window">
                 { (user.isLogined) ?
                     <p> Вы уже вошли как {user.user.email}. Ваш номер {user.user.id}
-                        <Link to="/score"><Button
+                        <Link to="/score" className="link"><Button
                             variant="contained"
                             color="primary"
                             >
                             Начать
-                        </Button></Link>
-                        <a href="/logup"><Button
+                        </Button></Link> <Button
                             variant="contained"
                             color="primary"
-                            onClick = {this.onOutClicked}>
+                            onClick = {this.onLogoutClicked}>
                             Выход
-                        </Button></a></p> :
-                    <form action="#" className="login-window__form">
+                        </Button></p> :
+                    <FormGroup className="login-window__form">
                         <TextField
                             id="signIn-email"
                             autoFocus={true}
@@ -67,7 +67,7 @@ class Logup extends PureComponent {
                             placeholder="test12@test.ru"
                             required={true}
                             type="email"
-                            onChange={this.onHandleChange}
+                            onChange={this.onHandleInputChange}
                         /> <br/>
                         <TextField
                             required={true}
@@ -77,18 +77,18 @@ class Logup extends PureComponent {
                             type="password"
                             margin="normal"
                             placeholder="111111"
-                            onChange={this.onHandleChange}
+                            onChange={this.onHandleInputChange}
                         /><br/>
                         <Button
                             variant="contained"
                             color="primary"
                             onClick = {this.onLogupClicked}>
-                            LogIn
+                            Зарегистрироваться
                         </Button>
                         {(user.error) ?
                             <p className='error-meassage'>{user.error}</p> :
                             ''}
-                    </form>
+                    </FormGroup>
                 }
             </div>
         );

@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { userSignedIn, userSignedUp, /*userSignedOut,*/ userSignedAuth } from 'actions/users';
+import { userSignedIn, userSignedUp, userSignedOut, userSignedAuth } from 'actions/users';
 
 const initialState = {
     isLogined: false,
@@ -42,21 +42,22 @@ export default handleActions({
         }
         return res;
     },
-//     [userSignedOut]: (state, action) => {
-//         /*
-//         if (action.payload.hasOwnProperty('error')){
-//             return {
-//                 ...state,
-//                 error: action.payload.error,
-//             };
-//         } else {
-//             return {
-//                 isLogined: false,
-//                 user: action.payload,
-//             };
-//         }
-// */
-//     },
+    [userSignedOut]: (state, action) => {
+        let res = {};
+
+        if (!action.payload.hasOwnProperty('error') && action.payload.hasOwnProperty('out')) {
+            res = {
+                isLogined: false,
+                user: action.payload,
+            };
+        } else {
+            res = {
+                ...state,
+                error: action.payload.error,
+            };
+        }
+        return res;
+    },
     [userSignedAuth]: (state, action) => {
         let res = {};
         if (!action.payload.error) {
@@ -69,7 +70,6 @@ export default handleActions({
                 ...state,
                 error: action.payload.error,
             };
-            localStorage.error = action.payload.error;
         }
         return res;
     },

@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
-import handleChange from 'containers/handleChange';
+import { handleInputChange, handleCheckboxChange } from 'containers/handleChange';
 
 class Login extends PureComponent {
     constructor(props) {
@@ -24,8 +27,12 @@ class Login extends PureComponent {
         userSigningAuth();
     }
 
-    onHandleChange = (event) => {
-        handleChange(event, this);
+    onHandleInputChange = (event) => {
+        handleInputChange(event, this);
+    };
+
+    onHandleCheckChange = (event) => {
+        handleCheckboxChange(event, this);
     };
 
     onLoginClicked = (event) => {
@@ -33,9 +40,9 @@ class Login extends PureComponent {
         userSigningIn(this.state);
     };
 
-    onOutClicked = (event) => {
-        //todo сделать нормальный выход пользователя
-        delete localStorage.user;
+    onLogoutClicked = (event) => {
+        const { userSigningOut } = this.props;
+        userSigningOut(this.state);
     };
 
     render()
@@ -45,18 +52,18 @@ class Login extends PureComponent {
             <div className="login-window">
                 { (user.isLogined) ?
                     <p> Вы уже вошли как {user.user.email}. Ваш номер {user.user.id}
-                        <Link to="/score"><Button
+                        <Link to="/score"  className="link"><Button
                             variant="contained"
                             color="primary"
                             >
                             Начать
-                        </Button></Link> <a href="/login"><Button
+                        </Button></Link> <Button
                             variant="contained"
                             color="primary"
-                            onClick = {this.onOutClicked}>
+                            onClick = {this.onLogoutClicked}>
                             Выход
-                        </Button></a></p> :
-                    <form action="#" className="login-window__form">
+                        </Button></p> :
+                    <FormGroup className="login-window__form">
                         <TextField
                             id="signIn-email"
                             autoFocus={true}
@@ -66,8 +73,8 @@ class Login extends PureComponent {
                             placeholder="test12@test.ru"
                             required={true}
                             type="email"
-                            onChange={this.onHandleChange}
-                        /> <br/>
+                            onChange={this.onHandleInputChange}
+                        />
                         <TextField
                             required={true}
                             id="signIn-password"
@@ -76,18 +83,28 @@ class Login extends PureComponent {
                             type="password"
                             margin="normal"
                             placeholder="111111"
-                            onChange={this.onHandleChange}
-                        /><br/>
+                            onChange={this.onHandleInputChange}
+                        />
                         <Button
                             variant="contained"
                             color="primary"
                             onClick = {this.onLoginClicked}>
-                            LogIn
+                            Войти
                         </Button>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    onChange={this.onHandleCheckChange}
+                                    name="remember_me"
+                                    checked={this.state.remember_me}
+                                />
+                            }
+                            label="Запомнить меня"
+                        />
                         {(user.error) ?
                             <p className='error-meassage'>{user.error}</p> :
                             ''}
-                    </form>
+                    </FormGroup>
                 }
             </div>
         );

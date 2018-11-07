@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { userSigningUp, /*userSigningOut,*/ userSigningAuth } from 'actions/users';
+import { userSigningUp, userSigningOut, userSigningAuth } from 'actions/users';
 import Logup from 'components/Logup';
 
 
@@ -17,7 +17,7 @@ function mapDispatchToProps(dispatch, props) {
         //отвечает за то что будет в props компонента из actions
         ...props,
         userSigningUp: (data) => dispatch(userSigningUp(data)),
-        //userSigningOut: (data) => dispatch(userSigningOut(data)),
+        userSigningOut: (data) => dispatch(userSigningOut(data)),
         userSigningAuth: (data) => dispatch(userSigningAuth(data)),
     }
 }
