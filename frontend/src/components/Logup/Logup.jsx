@@ -68,7 +68,7 @@ class Logup extends PureComponent {
                             required={true}
                             type="email"
                             onChange={this.onHandleInputChange}
-                        /> <br/>
+                        />
                         <TextField
                             required={true}
                             id="signIn-password"
@@ -78,7 +78,7 @@ class Logup extends PureComponent {
                             margin="normal"
                             placeholder="111111"
                             onChange={this.onHandleInputChange}
-                        /><br/>
+                        />
                         <Button
                             variant="contained"
                             color="primary"
