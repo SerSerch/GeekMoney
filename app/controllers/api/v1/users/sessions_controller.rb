@@ -11,20 +11,16 @@ module Api::V1
     # end
 
     # POST /resource/sign_in
-    # def create
-      # self.resource = warden.authenticate!(auth_options)
-      # set_flash_message(:notice, :signed_in) if is_navigational_format?
-      # sign_in(resource_name, resource)
-      # respond_with resource, :location => after_sign_in_path_for(resource)
-      # if true
-      #   render json: {
-      #     "Hi": "dsf"
-      #   }
-      # else
-      #   render json: {
-      #     "dfsdf": "dsf"
-      #   }
-    # end
+    def create
+      self.resource = warden.authenticate!(auth_options)
+      set_flash_message!(:notice, :signed_in)
+      sign_in(resource_name, resource)
+      yield resource if block_given?
+      render json: 
+        current_user.to_json(
+          only: [:id, :email]
+        )
+    end
 
     # DELETE /resource/sign_out
     def destroy
