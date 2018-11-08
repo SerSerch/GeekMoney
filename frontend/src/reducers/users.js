@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { userSignedIn, /*userSignedOut, userSignedAuth*/ } from 'actions/users';
+import { userSignedIn, /*userSignedOut,*/ userSignedAuth } from 'actions/users';
 
 const initialState = {
     isLogined: false,
@@ -10,6 +10,7 @@ export default handleActions({
     //наименование Action которое хотим обработать
     [userSignedIn]: (state, action) => {
         //как будет меняться состояние по сигналу
+        //что будем делать в зависимости то того, что пришло
         let res = {};
 
         if (!action.payload.hasOwnProperty('error')) {
@@ -40,20 +41,20 @@ export default handleActions({
 //         }
 // */
 //     },
-//     [userSignedAuth]: (state, action) => {
-//         let res = {};
-//         console.log('Auth u', action.payload);
-//         if (!action.payload.error) {
-//             res = {
-//                 isLogined: true,
-//                 user: action.payload,
-//             };
-//         } else {
-//             res = {
-//                 ...state,
-//                 error: action.payload.error,
-//             };
-//         }
-//         return res;
-//     },
+    [userSignedAuth]: (state, action) => {
+        let res = {};
+        if (!action.payload.error) {
+            res = {
+                isLogined: true,
+                user: action.payload,
+            };
+        } else {
+            res = {
+                ...state,
+                error: action.payload.error,
+            };
+            localStorage.error = action.payload.error;
+        }
+        return res;
+    },
 }, initialState);
