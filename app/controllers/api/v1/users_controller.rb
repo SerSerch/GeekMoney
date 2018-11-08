@@ -4,12 +4,12 @@ module Api::V1
     before_action :authenticate_user!
 
     def index
-      @users = User.all.pluck(:email)
-      render json: @users
+      # @users = User.all.pluck(:email)
+      # render json: @users
     end
 
     def show
-      render json: User.find(current_user.id)
+      render json: current_user.to_json(only: [:id, :email, :first_name, :last_name])
     end
 
   end

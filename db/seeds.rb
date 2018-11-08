@@ -8,10 +8,13 @@
 
 User.destroy_all
 
+user_num = 0
 hash_users = 20.times.map do 
   {
-    email: FFaker::Internet.safe_email,
-    password: FFaker::Internet.safe_email
+    email: "test#{user_num += 1}@test.ru",
+    password: "111111",
+    first_name: FFaker::Name.first_name,
+    last_name: FFaker::Name.last_name
   }
 end
 users = User.create! hash_users
