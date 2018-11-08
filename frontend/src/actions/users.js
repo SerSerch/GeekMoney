@@ -72,8 +72,8 @@ export const userSigningOut = (data) => (dispatch) => {
 };
 
 export const userSigningAuth = () => (dispatch) => {
-    if (localStorage.user) {
-        const user = JSON.parse(localStorage.user);
+    if (localStorage.user || sessionStorage.user) {
+        const user = JSON.parse(localStorage.user || sessionStorage.user);
         user.hasOwnProperty('email') ? dispatch(userSignedAuth(user)) : '';
     }
 };
