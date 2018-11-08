@@ -11,6 +11,8 @@
 * https://app.moqups.com/sermiasnik@gmail.com/cESBA4yOnQ/view
 * https://www.figma.com/files/team/636637231876995585/GeekMoney
 * https://drive.google.com/file/d/1Dih23JnbbJLIJtC2N91i-0a3mqhLrdR_/view?usp=sharing
+* Схема базы данных https://app.quickdatabasediagrams.com/#/d/qEWG6p
+* API (swagger) https://app.swaggerhub.com/apis-docs/GeekMoney/GeekMoney/1.0.0#/default/
 * Инструменты
 * https://material-ui.com/
 * https://developers.google.com/identity/sign-in/web/
