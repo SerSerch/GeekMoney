@@ -11,6 +11,7 @@ module Api::V1
     def show
       render json: current_user.to_json(only: [:id, :email, :first_name, :last_name])
     end
+    
 
   end
 
