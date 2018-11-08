@@ -10,7 +10,7 @@
 * [Задачи трелло](https://trello.com/b/16lED9gy)
 * [Логика похожего приложения](https://realtimeboard.com/welcomeonboard/gYmZ5JpM4hbYXt9hgGz7SlCMVkGVhln6TkFlKJmTAzTbqOSVLkH7ravoOKbGRHWp)
 * [Набросок дизайна](https://app.moqups.com/sermiasnik@gmail.com/cESBA4yOnQ/view)
-* [Разработка дизайнера](https://www.figma.com/files/team/636637231876995585/GeekMoney)
+* [Набросок дизайна на коленке](https://www.figma.com/files/team/636637231876995585/GeekMoney)
 * [Логика двухэтапной авторизации](https://drive.google.com/file/d/1Dih23JnbbJLIJtC2N91i-0a3mqhLrdR_/view?usp=sharing)
 * [Схема базы данных](https://app.quickdatabasediagrams.com/#/d/qEWG6p)
 * [API (swagger)](https://app.swaggerhub.com/apis-docs/GeekMoney/GeekMoney/1.0.0#/default/)
