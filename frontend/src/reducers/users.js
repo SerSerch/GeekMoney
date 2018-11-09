@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { userSignedIn, /*userSignedOut,*/ userSignedAuth } from 'actions/users';
+import { userSignedIn, userSignedUp, userSignedOut, userSignedAuth } from 'actions/users';
 
 const initialState = {
     isLogined: false,
@@ -13,7 +13,7 @@ export default handleActions({
         //что будем делать в зависимости то того, что пришло
         let res = {};
 
-        if (!action.payload.hasOwnProperty('error')) {
+        if (!action.payload.hasOwnProperty('error') && action.payload.hasOwnProperty('email')) {
             res = {
                 isLogined: true,
                 user: action.payload,
@@ -26,21 +26,38 @@ export default handleActions({
         }
         return res;
     },
-//     [userSignedOut]: (state, action) => {
-//         /*
-//         if (action.payload.hasOwnProperty('error')){
-//             return {
-//                 ...state,
-//                 error: action.payload.error,
-//             };
-//         } else {
-//             return {
-//                 isLogined: false,
-//                 user: action.payload,
-//             };
-//         }
-// */
-//     },
+    [userSignedUp]: (state, action) => {
+        let res = {};
+
+        if (!action.payload.hasOwnProperty('error') && action.payload.hasOwnProperty('email')) {
+            res = {
+                isLogined: true,
+                user: action.payload,
+            };
+        } else {
+            res = {
+                ...state,
+                error: action.payload.error,
+            };
+        }
+        return res;
+    },
+    [userSignedOut]: (state, action) => {
+        let res = {};
+
+        if (!action.payload.hasOwnProperty('error') && action.payload.hasOwnProperty('out')) {
+            res = {
+                isLogined: false,
+                user: action.payload,
+            };
+        } else {
+            res = {
+                ...state,
+                error: action.payload.error,
+            };
+        }
+        return res;
+    },
     [userSignedAuth]: (state, action) => {
         let res = {};
         if (!action.payload.error) {
@@ -53,7 +70,6 @@ export default handleActions({
                 ...state,
                 error: action.payload.error,
             };
-            localStorage.error = action.payload.error;
         }
         return res;
     },

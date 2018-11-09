@@ -1,28 +1,26 @@
-import './Login.scss';
+import './Logup.scss';
 
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Paper from '@material-ui/core/Paper';
-import Avatar from '@material-ui/core/Avatar';
+
+import { handleInputChange } from 'containers/handleChange';
+import FormGroup from "@material-ui/core/FormGroup/FormGroup";
+import Paper from "@material-ui/core/Paper/Paper";
+import Avatar from "@material-ui/core/Avatar/Avatar";
 
 import LockIcon from '@material-ui/icons/LockOutlined';
 
-import { handleInputChange, handleCheckboxChange } from 'containers/handleChange';
-
-class Login extends PureComponent {
+class Logup extends PureComponent {
     constructor(props) {
         super(props);
-        //todo сделать галочку запомнить меня
+
         this.state = {
             email: '',
             password: '',
-            remember_me: true,
+            remember_me: false,
         }
     }
 
@@ -35,13 +33,9 @@ class Login extends PureComponent {
         handleInputChange(event, this);
     };
 
-    onHandleCheckChange = (event) => {
-        handleCheckboxChange(event, this);
-    };
-
-    onLoginClicked = (event) => {
-        const { userSigningIn } = this.props;
-        userSigningIn(this.state);
+    onLogupClicked = (event) => {
+        const { userSigningUp } = this.props;
+        userSigningUp(this.state);
     };
 
     onLogoutClicked = (event) => {
@@ -56,7 +50,7 @@ class Login extends PureComponent {
             <div className="login-window">
                 { (user.isLogined) ?
                     <p> Вы уже вошли как {user.user.email}. Ваш номер {user.user.id}
-                        <Link to="/score"  className="link"><Button
+                        <Link to="/score" className="link"><Button
                             variant="contained"
                             color="primary"
                         >
@@ -93,22 +87,12 @@ class Login extends PureComponent {
                                 placeholder="111111"
                                 onChange={this.onHandleInputChange}
                             />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        onChange={this.onHandleCheckChange}
-                                        name="remember_me"
-                                        checked={this.state.remember_me}
-                                    />
-                                }
-                                label="Запомнить меня"
-                            />
                             <Button
                                 className="login-window__button _send"
                                 variant="contained"
                                 color="primary"
-                                onClick = {this.onLoginClicked}>
-                                Войти
+                                onClick = {this.onLogupClicked}>
+                                Зарегистрироваться
                             </Button>
                             {(user.error) ?
                                 <p className='error-meassage'>{user.error}</p> :
@@ -121,4 +105,4 @@ class Login extends PureComponent {
     }
 }
 
-export default Login;
+export default Logup;
