@@ -8,6 +8,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Roboto', sans-serif;
+	background-color: #fafafa;
 }
 
 .wrapper {
@@ -40,6 +41,8 @@ body {
 }
 
 .main {
+	display: flex;
+	align-items: center;
 	position: relative;
 	-webkit-box-flex: 1;
 	-ms-flex: 1 0 auto;
@@ -47,14 +50,20 @@ body {
 	width: 100%;
 	max-width: 1170px;
 	margin: 0 auto;
+	padding: 64px 0 16px;
+	box-sizing: border-box;
 }
 
 .footer {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;
-	height: 50px;
 	text-align: center;
+}
+
+.link {
+	text-decoration: none;
+	outline: none;
 }
 
 @import "media";

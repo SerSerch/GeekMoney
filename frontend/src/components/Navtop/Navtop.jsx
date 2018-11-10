@@ -27,6 +27,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 const caption = {
     "/": "GeekMoney",
     "/login": "Авторизация",
+    "/logup": "Регистрация",
+    "/api/user": "Пользователь",
     "/score": "Счета",
     "/income": "Доход",
     "/expenses": "Расход",
@@ -65,7 +67,7 @@ class Navtop extends PureComponent {
 
         return (
             <Fragment>
-                <AppBar position="static">
+                <AppBar position="fixed">
                     <Toolbar>
                         <IconButton className="menu__button _left"
                                     color="inherit" aria-label="Menu"
@@ -144,7 +146,7 @@ class Navtop extends PureComponent {
                             </ListItem>
                             <Divider />
                             {Object.keys(caption).map(link => (
-                                <Link to={link} className="menu__link" key={link}>
+                                <Link to={link} className="link" key={link}>
                                     <ListItem button>
                                         <ListItemIcon>
                                             <SendIcon/>

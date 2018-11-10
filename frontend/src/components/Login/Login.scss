@@ -1,9 +1,21 @@
 .login-window {
-    position: absolute;
-    top: 50%;
     width: 100%;
-    transform: translateY(-50%);
-    &__form {
+    padding: 0 10px;
+    box-sizing: border-box;
+    &__paper {
         text-align: center;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+    &__form {
+        padding: 16px 24px 24px;
+        box-sizing: border-box;
+    }
+    &__avatar._lock {
+        margin: 0 auto;
+        background-color: #e10050;
+    }
+    &__button._send {
+        margin-top: 24px;
     }
 }
