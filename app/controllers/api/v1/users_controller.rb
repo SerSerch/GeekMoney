@@ -1,48 +1,39 @@
-module Api::V1
-  
-  class UsersController < ApplicationController
-    before_action :authenticate_user!
+class Api::V1::UsersController < ApplicationController
+  before_action :authenticate_user!
 
-    def index
-      # @users = User.all.pluck(:email)
-      # render json: @users
-    end
+  def show
+    render json:
+      current_user.to_json(
+        only: [:id, :email, :first_name, :last_name],
+        include: {
 
-    def show
-      render json:
-        current_user.to_json(
-          only: [:id, :email, :first_name, :last_name],
-          include: {
+          accounts: {
+            only: [:name, :balance],
+            include: {
 
-            accounts: {
-              only: [:name, :balance],
-              include: {
+              currency: {
+                only: [:char_code, :nominal, :name, :value]
+              },
 
-                currency: {
-                  only: [:char_code, :nominal, :name, :value]
-                },
+              transactions: {
+                only: [:value],
+                include: {
 
-                transactions: {
-                  only: [:value],
-                  include: {
+                  category: {
+                    only: [:name]
+                  },
 
-                    category: {
-                      only: [:name]
-                    },
-
-                    tag: {
-                      only: [:name]
-                    },
-
-                  }
+                  tag: {
+                    only: [:name]
+                  },
 
                 }
+
               }
             }
           }
-        )
-    end
-      
+        }
+      )
   end
-
+      
 end

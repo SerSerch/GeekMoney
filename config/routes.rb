@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get "/user", to: "users#show"
+      delete "/accounts", to: "accounts#destroy"
+      put "/accounts", to: "accounts#update"
       resources :accounts, :currencies, :transactions, :tags, :categories
     end
   end
