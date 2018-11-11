@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_08_171338) do
+ActiveRecord::Schema.define(version: 2018_11_11_065948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 2018_11_08_171338) do
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "currencies", force: :cascade do |t|
     t.integer "num_code", null: false
     t.string "char_code", null: false
@@ -34,6 +40,24 @@ ActiveRecord::Schema.define(version: 2018_11_08_171338) do
     t.decimal "value", precision: 10, scale: 4, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "tag_id"
+    t.bigint "category_id"
+    t.decimal "value", precision: 10, scale: 4, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_transactions_on_account_id"
+    t.index ["category_id"], name: "index_transactions_on_category_id"
+    t.index ["tag_id"], name: "index_transactions_on_tag_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,4 +76,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_171338) do
 
   add_foreign_key "accounts", "currencies"
   add_foreign_key "accounts", "users"
+  add_foreign_key "transactions", "accounts"
+  add_foreign_key "transactions", "categories"
+  add_foreign_key "transactions", "tags"
 end

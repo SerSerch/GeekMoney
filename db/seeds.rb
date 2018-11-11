@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'net/http'
 
+# Create users
+
 User.destroy_all
 
 user_num = 0
@@ -20,7 +22,9 @@ hash_users = 20.times.map do
 end
 users = User.create! hash_users
 
+
 # Get current curriences from the CBR
+
 url = "https://www.cbr-xml-daily.ru/daily_json.js"
 response = Net::HTTP.get_response(URI.parse(url))
 data = JSON.parse(response.body)
@@ -40,7 +44,9 @@ end
 Currency.destroy_all
 Currency.create! currency_hashes
 
+
 # Create users accounts
+
 Account.destroy_all
 
 accounts = [
@@ -57,7 +63,7 @@ accounts = [
 ]
 users_count = User.count
 hash_accounts = users_count.times.map do |i|
-  user_hash = rand(5).times.map do
+  user_hash = rand(1..7).times.map do
     {
       user_id: User.offset(i).limit(1).pluck(:id)[0],
       currency_id: Currency.all.sample.id,
@@ -67,3 +73,77 @@ hash_accounts = users_count.times.map do |i|
   end
 end
 Account.create! hash_accounts
+
+
+# Create categories
+
+Category.destroy_all
+
+categories = [
+  "Обеды, перекусы",
+  "Алкоголь",
+  "Рестораны, кафе",
+  "Кино, театр",
+  "Хозтовары",
+  "Квартплата",
+  "Бензин",
+  "Парковка",
+  "Мойка авто",
+  "Проездной",
+  "Разовые траты",
+  "Интернет",
+  "Мобильная связь",
+  "Подарки",
+  "Аптека",
+  "Медицина"
+]
+
+hash_categories = categories.count.times.map do |i|
+  {
+    name: categories[i]
+  }
+end
+
+Category.create! hash_categories
+
+
+# Create tags 
+
+Tag.destroy_all
+
+tags = [
+  "Мише",
+  "Паше",
+  "Саше",
+  "Тане"
+]
+
+hash_tags = tags.count.times.map do |i|
+  {
+    name: tags[i]
+  }
+end
+
+Tag.create! hash_tags
+
+
+# Create transactions
+
+Transaction.destroy_all
+
+transaction_hashes = []
+
+User.all.each do |user|
+  user.accounts.each do |account|
+    rand(10..30).times do
+      transaction_hashes << {
+        account_id: account.id,
+        category_id: Category.all.sample.id,
+        tag_id: rand(2) == 1 ? Tag.all.sample.id : nil,
+        value: rand(-30000.0000..30000.0000)
+      }
+    end
+  end
+end
+
+Transaction.create! transaction_hashes
