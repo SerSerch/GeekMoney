@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'net/http'
 
 # Create users
@@ -61,17 +54,19 @@ accounts = [
   "Наличка под подушкой",
   "Наличка в кармане"
 ]
-users_count = User.count
-hash_accounts = users_count.times.map do |i|
-  user_hash = rand(1..7).times.map do
-    {
-      user_id: User.offset(i).limit(1).pluck(:id)[0],
-      currency_id: Currency.all.sample.id,
+
+hash_accounts = []
+ User.all.each do |user|
+  rand(1..7).times do
+    hash_accounts << {
+      user: user,
+      currency: Currency.all.sample,
       name: accounts.sample,
       balance: rand(100.01..1000000.999)
     }
   end
 end
+
 Account.create! hash_accounts
 
 
@@ -98,10 +93,14 @@ categories = [
   "Медицина"
 ]
 
-hash_categories = categories.count.times.map do |i|
-  {
-    name: categories[i]
-  }
+hash_categories = []
+ User.all.each do |user|
+  rand(3..10).times do
+    hash_categories << {
+      user: user,
+      name: categories.sample
+    }
+  end
 end
 
 Category.create! hash_categories
@@ -115,13 +114,22 @@ tags = [
   "Мише",
   "Паше",
   "Саше",
-  "Тане"
+  "Тане",
+  "Пете",
+  "Васе",
+  "Славе",
+  "Вале",
+  "Кате"
 ]
 
-hash_tags = tags.count.times.map do |i|
-  {
-    name: tags[i]
-  }
+hash_tags = []
+ User.all.each do |user|
+  rand(2..5).times do
+    hash_tags << {
+      user: user,
+      name: tags.sample
+    }
+  end
 end
 
 Tag.create! hash_tags
@@ -137,9 +145,9 @@ User.all.each do |user|
   user.accounts.each do |account|
     rand(10..30).times do
       transaction_hashes << {
-        account_id: account.id,
-        category_id: Category.all.sample.id,
-        tag_id: rand(2) == 1 ? Tag.all.sample.id : nil,
+        account: account,
+        category: user.categories.sample,
+        tag: rand(2) == 1 ? user.tags.sample : nil,
         value: rand(-30000.0000..30000.0000)
       }
     end

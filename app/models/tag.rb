@@ -1,3 +1,4 @@
 class Tag < ApplicationRecord
-  has_many :transactions, dependent: :destroy
+  has_many :transactions
+  belongs_to :user
 end
