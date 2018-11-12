@@ -35,7 +35,9 @@ class Api::V1::AccountsController < ApplicationController
     @new_account = params[:new]
     account.update(account_params)
     account.save
-    render json: {"out": "Account have been updated"}, status: 201
+    render json: account.to_json(
+      only: [:name, :balance]
+    ), status: 201
   end
 
   def destroy

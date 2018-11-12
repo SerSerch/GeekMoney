@@ -18,6 +18,10 @@ Rails.application.routes.draw do
       get "/user", to: "users#show"
       delete "/accounts", to: "accounts#destroy"
       put "/accounts", to: "accounts#update"
+      delete "/categories", to: "categories#destroy"
+      put "/categories", to: "categories#update"
+      delete "/tags", to: "tags#destroy"
+      put "/tags", to: "tags#update"
       resources :accounts, :currencies, :transactions, :tags, :categories
     end
   end

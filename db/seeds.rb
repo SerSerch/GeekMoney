@@ -95,10 +95,10 @@ categories = [
 
 hash_categories = []
  User.all.each do |user|
-  rand(3..10).times do
+  rand(3..11).times do |i|
     hash_categories << {
       user: user,
-      name: categories.sample
+      name: categories[i]
     }
   end
 end
@@ -124,10 +124,10 @@ tags = [
 
 hash_tags = []
  User.all.each do |user|
-  rand(2..5).times do
+  rand(2..9).times do |i|
     hash_tags << {
       user: user,
-      name: tags.sample
+      name: tags[i]
     }
   end
 end
