@@ -29,7 +29,7 @@ export default handleActions({
     [userSignedUp]: (state, action) => {
         let res = {};
 
-        if (!action.payload.hasOwnProperty('error') && action.payload.hasOwnProperty('email')) {
+        if (!action.payload.hasOwnProperty('errors') && action.payload.hasOwnProperty('email')) {
             res = {
                 isLogined: true,
                 user: action.payload,
@@ -37,7 +37,7 @@ export default handleActions({
         } else {
             res = {
                 ...state,
-                error: action.payload.error,
+                error: action.payload.errors,
             };
         }
         return res;

@@ -10,8 +10,15 @@ import { handleInputChange } from 'containers/handleChange';
 import FormGroup from "@material-ui/core/FormGroup/FormGroup";
 import Paper from "@material-ui/core/Paper/Paper";
 import Avatar from "@material-ui/core/Avatar/Avatar";
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 import LockIcon from '@material-ui/icons/LockOutlined';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 class Logup extends PureComponent {
     constructor(props) {
@@ -21,6 +28,7 @@ class Logup extends PureComponent {
             email: '',
             password: '',
             remember_me: false,
+            showPassword: false,
         }
     }
 
@@ -41,6 +49,10 @@ class Logup extends PureComponent {
     onLogoutClicked = (event) => {
         const { userSigningOut } = this.props;
         userSigningOut(this.state);
+    };
+
+    handleClickShowPassword = () => {
+        this.setState(state => ({ showPassword: !state.showPassword }));
     };
 
     render()
@@ -67,26 +79,40 @@ class Logup extends PureComponent {
                                 <LockIcon />
                             </Avatar>
                             <TextField
-                                id="signIn-email"
-                                autoFocus={true}
                                 label="Электронная почта"
+                                id="signIn-email"
                                 name="email"
+                                type="email"
                                 margin="normal"
                                 placeholder="test12@test.ru"
                                 required={true}
-                                type="email"
+                                autoFocus={true}
                                 onChange={this.onHandleInputChange}
+                                error={user.error && user.error.email ? true : false}
                             />
-                            <TextField
-                                required={true}
+                            <FormControl>
+                                <InputLabel htmlFor="adornment-password">Пароль</InputLabel>
+                            <Input
                                 id="signIn-password"
                                 name="password"
-                                label="Пароль"
-                                type="password"
-                                margin="normal"
+                                type={this.state.showPassword ? 'text' : 'password'}
                                 placeholder="111111"
+                                required={true}
                                 onChange={this.onHandleInputChange}
+                                error={user.error && user.error.password ? true : false}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="Toggle password visibility"
+                                            onClick={this.handleClickShowPassword}
+                                        >
+                                            {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
                             />
+                            </FormControl>
+
                             <Button
                                 className="login-window__button _send"
                                 variant="contained"
@@ -95,7 +121,9 @@ class Logup extends PureComponent {
                                 Зарегистрироваться
                             </Button>
                             {(user.error) ?
-                                <p className='error-meassage'>{user.error}</p> :
+                                Object.keys(user.error).map(err => {
+                                    return <p key={err} className="error-meassage">{err} {user.error[err][0]}</p>
+                                }) :
                                 ''}
                         </FormGroup>
                     </Paper>

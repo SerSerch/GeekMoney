@@ -73,24 +73,24 @@ class Login extends PureComponent {
                                 <LockIcon />
                             </Avatar>
                             <TextField
-                                id="signIn-email"
-                                autoFocus={true}
                                 label="Электронная почта"
+                                id="signIn-email"
                                 name="email"
+                                type="email"
                                 margin="normal"
                                 placeholder="test12@test.ru"
                                 required={true}
-                                type="email"
+                                autoFocus={true}
                                 onChange={this.onHandleInputChange}
                             />
                             <TextField
-                                required={true}
+                                label="Пароль"
                                 id="signIn-password"
                                 name="password"
-                                label="Пароль"
                                 type="password"
                                 margin="normal"
                                 placeholder="111111"
+                                required={true}
                                 onChange={this.onHandleInputChange}
                             />
                             <FormControlLabel
@@ -111,7 +111,7 @@ class Login extends PureComponent {
                                 Войти
                             </Button>
                             {(user.error) ?
-                                <p className='error-meassage'>{user.error}</p> :
+                                <p className="error-meassage">{user.error}</p> :
                                 ''}
                         </FormGroup>
                     </Paper>
