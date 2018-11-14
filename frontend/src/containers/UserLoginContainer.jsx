@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { userSigningIn, userSigningOut, userSigningAuth } from 'actions/users';
 import Login from 'components/Login';
