@@ -37,7 +37,7 @@ export default handleActions({
         } else {
             res = {
                 ...state,
-                error: action.payload.errors,
+                errors: action.payload.errors,
             };
         }
         return res;

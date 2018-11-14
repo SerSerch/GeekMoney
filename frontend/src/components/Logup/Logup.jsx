@@ -88,18 +88,22 @@ class Logup extends PureComponent {
                                 required={true}
                                 autoFocus={true}
                                 onChange={this.onHandleInputChange}
-                                error={user.error && user.error.email ? true : false}
+                                error={user.errors && user.errors.email ? true : false}
                             />
-                            <FormControl>
-                                <InputLabel htmlFor="adornment-password">Пароль</InputLabel>
+                            <FormControl
+                                error={user.errors && user.errors.password ? true : false}
+                                required={true}
+                            >
+                                <InputLabel htmlFor="signIn-password">Пароль</InputLabel>
                             <Input
                                 id="signIn-password"
                                 name="password"
                                 type={this.state.showPassword ? 'text' : 'password'}
                                 placeholder="111111"
-                                required={true}
                                 onChange={this.onHandleInputChange}
-                                error={user.error && user.error.password ? true : false}
+                                inputProps={{
+                                    maxLength: "16",
+                                }}
                                 endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton
@@ -120,9 +124,9 @@ class Logup extends PureComponent {
                                 onClick = {this.onLogupClicked}>
                                 Зарегистрироваться
                             </Button>
-                            {(user.error) ?
-                                Object.keys(user.error).map(err => {
-                                    return <p key={err} className="error-meassage">{err} {user.error[err][0]}</p>
+                            {(user.errors) ?
+                                Object.keys(user.errors).map(err => {
+                                    return <div key={err} className="login-window__error">{err} {user.errors[err][0]}</div>
                                 }) :
                                 ''}
                         </FormGroup>
