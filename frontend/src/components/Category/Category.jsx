@@ -6,11 +6,13 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
+import InputBase from '@material-ui/core/InputBase';
 
 import AttachMoney from '@material-ui/icons/AttachMoney';
 import AddIcon from '@material-ui/icons/Add';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import Remove from '@material-ui/icons/Remove';
+import SearchIcon from '@material-ui/icons/Search';
 
 import { handleCheckboxChange } from 'containers/handleChange';
 
@@ -34,6 +36,18 @@ class Category extends PureComponent {
     render() {
         return (
             <Fragment>
+                <div className="search">
+                    <div className="searchIcon">
+                        <SearchIcon />
+                    </div>
+                    <InputBase
+                        placeholder="Search…"
+                        classes={{
+                            root: 'inputRoot _custom',
+                            input: 'inputInput _custom',
+                        }}
+                    />
+                </div>
                 <List className="trans-list _panel" component="div">
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(value => (
                         <ListItem key={value} button component="label" htmlFor={`category${value}`}>

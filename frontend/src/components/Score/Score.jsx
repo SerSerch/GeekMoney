@@ -4,14 +4,15 @@ import React, { PureComponent, Fragment } from 'react';
 import Radio from '@material-ui/core/Radio';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
+import InputBase from '@material-ui/core/InputBase';
 
 import MonetizationOn from '@material-ui/icons/MonetizationOn';
 import AddIcon from '@material-ui/icons/Add';
 import Remove from '@material-ui/icons/Remove';
 import CompareArrows from '@material-ui/icons/CompareArrows';
+import SearchIcon from '@material-ui/icons/Search';
 
 import { handleCheckboxChange } from 'containers/handleChange';
 
@@ -35,6 +36,18 @@ class Score extends PureComponent {
     render() {
         return (
             <Fragment>
+                <div className="search">
+                    <div className="searchIcon">
+                        <SearchIcon />
+                    </div>
+                    <InputBase
+                        placeholder="Search…"
+                        classes={{
+                            root: 'inputRoot _custom',
+                            input: 'inputInput _custom',
+                        }}
+                    />
+                </div>
                 <List className="trans-list _panel" component="div">
                     {[1, 2].map(value => (
                         <ListItem key={value} button component="label" htmlFor={`score${value}`}>
@@ -51,6 +64,7 @@ class Score extends PureComponent {
                         </ListItem>
                     ))}
                 </List>
+
                 <div className="transactions">
                     <Button variant="fab" color="primary" aria-label="Add">
                         <AddIcon />
