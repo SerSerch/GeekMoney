@@ -28,6 +28,30 @@ class ${componentName} extends PureComponent {
 
 export default ${componentName};`;
 
+const containerCode = `import React from 'react';
+import { connect } from 'react-redux';
+import { testSigningIn } from 'actions/${nameLowerCase}s';
+import ${componentName} from 'components/${componentName}';
+
+
+function mapStateToProps(state, ownProps) {
+    return {
+        //отвечает за то что будет в props компонента из store
+        ...ownProps,
+        ${nameLowerCase}: state.${nameLowerCase},
+    }
+}
+
+function mapDispatchToProps(dispatch, props) {
+    return {
+        //отвечает за то что будет в props компонента из actions
+        ...props,
+        testSigningIn: (data) => dispatch(testSigningIn(data)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(${componentName});`;
+
 fs.writeFileSync(
     path.resolve(__dirname, '..', 'src', 'components', componentName, `${componentName}.jsx`),
     componentCode
@@ -41,4 +65,9 @@ fs.writeFileSync(
 fs.writeFileSync(
     path.resolve(__dirname, '..', 'src', 'components', componentName, `${componentName}.scss`),
     `.${componentName.toLowerCase()} {}`
+);
+
+fs.writeFileSync(
+    path.resolve(__dirname, '..', 'src', 'containers', componentName + 'Container.jsx'),
+    containerCode
 );
