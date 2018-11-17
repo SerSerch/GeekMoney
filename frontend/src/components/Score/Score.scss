@@ -1,1 +1,16 @@
-.score {}
+.trans-list {
+  width: 100%;
+  &._panel {
+    padding: 0 0 71px;
+  }
+}
+
+.transactions {
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  bottom: 0px;
+  padding: 5px 0 10px;
+  background-color: #fafafa;
+}
