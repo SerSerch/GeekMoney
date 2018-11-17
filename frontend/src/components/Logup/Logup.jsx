@@ -33,8 +33,8 @@ class Logup extends PureComponent {
     }
 
     componentDidMount() {
-        const { userSigningAuth } = this.props;
-        userSigningAuth();
+        const { userSigningAuth, user, history } = this.props;
+        userSigningAuth({user, history});
     }
 
     onHandleInputChange = (event) => {
@@ -42,8 +42,8 @@ class Logup extends PureComponent {
     };
 
     onLogupClicked = (event) => {
-        const { userSigningUp } = this.props;
-        userSigningUp(this.state);
+        const { userSigningUp, history } = this.props;
+        userSigningUp({data: this.state, history});
     };
 
     onLogoutClicked = (event) => {

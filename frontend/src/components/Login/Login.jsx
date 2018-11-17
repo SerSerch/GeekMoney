@@ -1,7 +1,7 @@
 import './Login.scss';
 
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -31,12 +31,13 @@ class Login extends PureComponent {
             password: '',
             remember_me: true,
             showPassword: false,
+            history: this.props.history
         }
     }
 
     componentDidMount() {
-        const { userSigningAuth, user } = this.props;
-        userSigningAuth();
+        const { userSigningAuth, user, history } = this.props;
+        userSigningAuth({user, history});
     }
 
     onHandleInputChange = (event) => {
@@ -48,8 +49,8 @@ class Login extends PureComponent {
     };
 
     onLoginClicked = (event) => {
-        const { userSigningIn } = this.props;
-        userSigningIn(this.state);
+        const { userSigningIn, history } = this.props;
+        userSigningIn({data: this.state, history});
     };
 
     onLogoutClicked = (event) => {
