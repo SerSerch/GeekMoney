@@ -1,6 +1,7 @@
 import './Category.scss';
 
 import React, { PureComponent, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Radio from '@material-ui/core/Radio';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -64,16 +65,19 @@ class Category extends PureComponent {
                         </ListItem>
                     ))}
                 </List>
-                <div className="transactions">
+                <div className="transactions0">
+                    <Link to="/income" className="link transactions">
                     <Button variant="fab" color="primary" aria-label="Add">
                         <AddIcon />
                     </Button>
+
                     <Button variant="fab" aria-label="Edit" >
                         <CompareArrows />
                     </Button>
                     <Button variant="fab" color="secondary" aria-label="Edit">
                         <Remove />
                     </Button>
+                    </Link>
                 </div>
             </Fragment>
         );

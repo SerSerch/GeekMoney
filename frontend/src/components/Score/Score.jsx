@@ -15,6 +15,7 @@ import CompareArrows from '@material-ui/icons/CompareArrows';
 import SearchIcon from '@material-ui/icons/Search';
 
 import { handleCheckboxChange } from 'containers/handleChange';
+import {Link} from "react-router-dom";
 
 class Score extends PureComponent {
     constructor(props) {
@@ -65,7 +66,8 @@ class Score extends PureComponent {
                     ))}
                 </List>
 
-                <div className="transactions">
+                <div className="transactions0">
+                    <Link to="/income" className="link transactions">
                     <Button variant="fab" color="primary" aria-label="Add">
                         <AddIcon />
                     </Button>
@@ -75,6 +77,7 @@ class Score extends PureComponent {
                     <Button variant="fab" color="secondary" aria-label="Edit">
                         <Remove />
                     </Button>
+                    </Link>
                 </div>
             </Fragment>
         );
