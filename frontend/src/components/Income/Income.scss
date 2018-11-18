@@ -1,1 +1,31 @@
-.income {}
+.income {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    .transaction{
+        text-align: center;
+        padding: 20px;
+        max-width: 320px;
+        margin: 0 auto;
+        &-hashtags{
+            width: 100%;
+        }
+        &-summwindow{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &-saveButton{
+            margin-top: 15px;
+        }
+    }
+    .calculator-row{
+        display: flex;
+
+        flex-flow: row nowrap;
+        .calculator-button{
+            flex: 1;
+            margin: 5px;
+        }
+    }
+}
