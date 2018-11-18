@@ -1,7 +1,7 @@
 import './Login.scss';
 
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -10,8 +10,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 import LockIcon from '@material-ui/icons/LockOutlined';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import { handleInputChange, handleCheckboxChange } from 'containers/handleChange';
 
@@ -23,12 +30,14 @@ class Login extends PureComponent {
             email: '',
             password: '',
             remember_me: true,
+            showPassword: false,
+            history: this.props.history
         }
     }
 
     componentDidMount() {
-        const { userSigningAuth } = this.props;
-        userSigningAuth();
+        const { userSigningAuth, user, history } = this.props;
+        userSigningAuth({user, history});
     }
 
     onHandleInputChange = (event) => {
@@ -40,13 +49,17 @@ class Login extends PureComponent {
     };
 
     onLoginClicked = (event) => {
-        const { userSigningIn } = this.props;
-        userSigningIn(this.state);
+        const { userSigningIn, history } = this.props;
+        userSigningIn({data: this.state, history});
     };
 
     onLogoutClicked = (event) => {
         const { userSigningOut } = this.props;
         userSigningOut(this.state);
+    };
+
+    handleClickShowPassword = () => {
+        this.setState(state => ({ showPassword: !state.showPassword }));
     };
 
     render()
@@ -73,26 +86,43 @@ class Login extends PureComponent {
                                 <LockIcon />
                             </Avatar>
                             <TextField
-                                id="signIn-email"
-                                autoFocus={true}
                                 label="Электронная почта"
+                                id="signIn-email"
                                 name="email"
+                                type="email"
                                 margin="normal"
                                 placeholder="test12@test.ru"
                                 required={true}
-                                type="email"
+                                autoFocus={true}
                                 onChange={this.onHandleInputChange}
+                                error={user.error ? true : false}
                             />
-                            <TextField
+                            <FormControl
+                                error={user.error ? true : false}
                                 required={true}
-                                id="signIn-password"
-                                name="password"
-                                label="Пароль"
-                                type="password"
-                                margin="normal"
-                                placeholder="111111"
-                                onChange={this.onHandleInputChange}
-                            />
+                            >
+                                <InputLabel htmlFor="adornment-password">Пароль</InputLabel>
+                                <Input
+                                    id="signIn-password"
+                                    name="password"
+                                    type={this.state.showPassword ? 'text' : 'password'}
+                                    placeholder="111111"
+                                    onChange={this.onHandleInputChange}
+                                    inputProps={{
+                                        maxLength: "16",
+                                    }}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="Toggle password visibility"
+                                                onClick={this.handleClickShowPassword}
+                                            >
+                                                {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                />
+                            </FormControl>
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -111,7 +141,7 @@ class Login extends PureComponent {
                                 Войти
                             </Button>
                             {(user.error) ?
-                                <p className='error-meassage'>{user.error}</p> :
+                                <div className="login-window__error">{user.error}</div> :
                                 ''}
                         </FormGroup>
                     </Paper>

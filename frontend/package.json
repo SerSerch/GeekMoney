@@ -7,6 +7,7 @@
     "dev": "webpack --mode development",
     "start": "webpack-dev-server --mode development --open",
     "cc": "node cli/createComponent.js --name",
+    "ccc": "node cli/createContainer.js --name",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

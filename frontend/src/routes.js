@@ -1,8 +1,8 @@
 import Landing from 'components/Landing';
-//import Login from 'components/Login';
 import Login from 'containers/UserLoginContainer';
 import Logup from 'containers/UserLogupContainer';
-import Score from 'components/Score';
+import Score from 'containers/ScoreContainer';
+import Category from 'containers/CategoryContainer';
 import Income from 'components/Income';
 import Expenses from 'components/Expenses';
 import Transfer from 'components/Transfer';
@@ -27,6 +27,11 @@ export default [
     {
         path: '/score',
         component: Score,
+        exact: true
+    },
+    {
+        path: '/category',
+        component: Category,
         exact: true
     },
     {

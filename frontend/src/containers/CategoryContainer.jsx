@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { userSigningUp, userSigningOut, userSigningAuth } from 'actions/users';
-import Logup from 'components/Logup';
+import { testSigningIn } from 'actions/categories';
+import Category from 'components/Category';
 
 
 function mapStateToProps(state, ownProps) {
     return {
         //отвечает за то что будет в props компонента из store
         ...ownProps,
-        user: state.user,
+        category: state.category,
     }
 }
 
@@ -16,10 +16,8 @@ function mapDispatchToProps(dispatch, props) {
     return {
         //отвечает за то что будет в props компонента из actions
         ...props,
-        userSigningUp: (data) => dispatch(userSigningUp(data)),
-        userSigningOut: (data) => dispatch(userSigningOut(data)),
-        userSigningAuth: (data) => dispatch(userSigningAuth(data)),
+        testSigningIn: (data) => dispatch(testSigningIn(data)),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Logup);
+export default connect(mapStateToProps, mapDispatchToProps)(Category);

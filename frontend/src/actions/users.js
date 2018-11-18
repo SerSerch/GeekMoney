@@ -7,10 +7,13 @@ export const userSignedOut = createAction('[User] signedOut');
 export const userSignedAuth = createAction('[User] signedAuth');
 
 //обыкновенные функции
-export const userSigningIn = (data) => (dispatch) => {
+export const userSigningIn = (obj) => (dispatch) => {
+    const {data, history} = obj;
+    const {email, password, remember_me} = data;
     const request = {
-        user: data,
+        user: {email, password, remember_me},
     };
+
     //todo добавить проверку формы data
     if (data.email && data.password) {
         fetch('/api/signin', {
@@ -26,16 +29,19 @@ export const userSigningIn = (data) => (dispatch) => {
         }).then((user) => {
             const storage = data.remember_me ? localStorage : sessionStorage;
             storage.user = JSON.stringify(user);
-
             //обработчик события
             dispatch(userSignedIn(user));
+            history.push('/score');
+            history.replace('/score');
         }).catch((err) => console.log('error catch', err));
     }
 };
 
-export const userSigningUp = (data) => (dispatch) => {
+export const userSigningUp = (obj) => (dispatch) => {
+    const {data, history} = obj;
+    const {email, password, remember_me} = data;
     const request = {
-        user: data,
+        user: {email, password, remember_me},
     };
     //todo добавить проверку формы data
     if (data.email && data.password) {
@@ -55,6 +61,8 @@ export const userSigningUp = (data) => (dispatch) => {
 
             //обработчик события
             dispatch(userSignedUp(user));
+            history.push('/score');
+            history.replace('/score');
         }).catch((err) => console.log('error catch', err));
     }
 };
@@ -71,9 +79,14 @@ export const userSigningOut = (data) => (dispatch) => {
     }).catch((err) => console.log('error catch', err));
 };
 
-export const userSigningAuth = () => (dispatch) => {
-    if (localStorage.user || sessionStorage.user) {
-        const user = JSON.parse(localStorage.user || sessionStorage.user);
-        user.hasOwnProperty('email') ? dispatch(userSignedAuth(user)) : '';
+export const userSigningAuth = (obj) => (dispatch) => {
+    const {user, history} = obj;
+    if (!user.isLogined && (localStorage.user || sessionStorage.user)) {
+        const userStorage = JSON.parse(localStorage.user || sessionStorage.user);
+        if (userStorage.hasOwnProperty('email')) {
+            dispatch(userSignedAuth(userStorage));
+            history.push('/score');
+            history.replace('/score');
+        };
     }
 };

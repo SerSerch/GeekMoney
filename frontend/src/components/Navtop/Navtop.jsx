@@ -30,6 +30,7 @@ const caption = {
     "/logup": "Регистрация",
     "/api/user": "Пользователь",
     "/score": "Счета",
+    "/category": "Категории",
     "/income": "Доход",
     "/expenses": "Расход",
     "/transfer": "Перевод",
