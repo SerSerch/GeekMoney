@@ -15,7 +15,7 @@ module.exports = {
         contentBase: "./dist",
         proxy: {
             '/api': {
-                target: 'https://floating-woodland-16538.herokuapp.com/api/v1',
+                target: 'https://floating-woodland-16538.herokuapp.com/api',
                 pathRewrite: {'^/api' : ''},
                 changeOrigin: true,
                 secure: false,

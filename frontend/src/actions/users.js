@@ -16,7 +16,7 @@ export const userSigningIn = (obj) => (dispatch) => {
 
     //todo добавить проверку формы data
     if (data.email && data.password) {
-        fetch('/api/signin', {
+        fetch('/api/v1/signin', {
             method: 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -45,7 +45,7 @@ export const userSigningUp = (obj) => (dispatch) => {
     };
     //todo добавить проверку формы data
     if (data.email && data.password) {
-        fetch('/api/signup', {
+        fetch('/api/v1/signup', {
             method: 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -68,7 +68,7 @@ export const userSigningUp = (obj) => (dispatch) => {
 };
 
 export const userSigningOut = (data) => (dispatch) => {
-    fetch('/api/signout', {
+    fetch('/api/v1/signout', {
         method: 'delete',
     }).then((res) => {
         return res.json();
