@@ -10,6 +10,7 @@ yarn-error.log*
 node_modules/
 dist/
 .idea/
+package-lock.json
 
 #dotenv environment variables file
 .env
