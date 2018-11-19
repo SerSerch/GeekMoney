@@ -1,10 +1,10 @@
 import { createAction } from 'redux-actions';
 
 // Actions
-export const userSignedIn = createAction('[User] signedIn');
+export const testSignedIn = createAction('[Test] signedIn');
 
 //обыкновенные функции
-export const userSigningIn = (data) => (dispatch) => {
+export const testSigningIn = (data) => (dispatch) => {
     const request = {
         user: data,
     };

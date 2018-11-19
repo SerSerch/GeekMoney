@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { userSignedIn } from 'actions/scores';
+import { testSignedIn } from 'actions/categories';
 
 const initialState = {
     score: {},
@@ -8,7 +8,7 @@ const initialState = {
 
 export default handleActions({
     //наименование Action которое хотим обработать
-    [userSignedIn]: (state, action) => {
+    [testSignedIn]: (state, action) => {
         //как будет меняться состояние по сигналу
         //что будем делать в зависимости то того, что пришло
         let res = {};
