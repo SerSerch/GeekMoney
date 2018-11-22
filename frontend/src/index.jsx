@@ -3,6 +3,17 @@
 *********************************************************************/
 //Migration to typography v2
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+import WebFont from 'webfontloader';
+
+WebFont.load({
+    google: {
+        families: [
+            'Roboto:300,400,500',
+            'sans-serif'
+        ]
+    }
+});
+
 /*Include styles*/
 import './sass/main.scss';
 
