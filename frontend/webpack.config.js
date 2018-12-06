@@ -49,6 +49,7 @@ module.exports = {
             containers: path.resolve(__dirname, 'src', 'Containers'),
             actions: path.resolve(__dirname, 'src', 'actions'),
             reducers: path.resolve(__dirname, 'src', 'reducers'),
+            efi: path.resolve(__dirname, 'src', 'efi'),
         }
     },
     plugins :[
