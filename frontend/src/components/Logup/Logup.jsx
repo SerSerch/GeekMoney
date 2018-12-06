@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import { handleInputChange } from 'containers/handleChange';
+import { handleInputChange } from 'efi/handleChange';
 import FormGroup from "@material-ui/core/FormGroup/FormGroup";
 import Paper from "@material-ui/core/Paper/Paper";
 import Avatar from "@material-ui/core/Avatar/Avatar";

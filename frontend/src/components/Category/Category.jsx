@@ -15,7 +15,7 @@ import CompareArrows from '@material-ui/icons/CompareArrows';
 import Remove from '@material-ui/icons/Remove';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { handleCheckboxChange } from 'containers/handleChange';
+import { handleCheckboxChange } from 'efi/handleChange';
 
 class Category extends PureComponent {
     constructor(props) {

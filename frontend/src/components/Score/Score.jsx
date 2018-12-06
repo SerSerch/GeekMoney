@@ -14,7 +14,7 @@ import Remove from '@material-ui/icons/Remove';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { handleCheckboxChange } from 'containers/handleChange';
+import { handleCheckboxChange } from 'efi/handleChange';
 import {Link} from "react-router-dom";
 
 class Score extends PureComponent {

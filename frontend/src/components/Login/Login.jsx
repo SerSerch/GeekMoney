@@ -20,7 +20,7 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-import { handleInputChange, handleCheckboxChange } from 'containers/handleChange';
+import { handleInputChange, handleCheckboxChange } from 'efi/handleChange';
 
 class Login extends PureComponent {
     constructor(props) {
