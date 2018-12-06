@@ -1,14 +1,13 @@
 /********************************************************************
-* Includes															*
-*********************************************************************/
-//Migration to typography v2
-window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+ * Includes															*
+ *********************************************************************/
 import WebFont from 'webfontloader';
 
 WebFont.load({
     google: {
         families: [
-            'Roboto:300,400,500',
+            'Overpass:600',
+            'Source Sans Pro:400,700',
             'sans-serif'
         ]
     }
@@ -17,11 +16,12 @@ WebFont.load({
 /*Include styles*/
 import './sass/main.scss';
 
-/*Incude libraries*/ 
+/*Incude libraries*/
 import  React, {Component, Fragment} from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 //import { createStore, applyMiddleware} from 'redux';
 //import thunk from 'redux-thunk';
 
@@ -33,10 +33,11 @@ import Footer from 'components/Footer';
 //import rootReduser from './reducers';
 import routes from './routes';
 import { store } from './store';
+import { themeGreen } from './theme';
 
 /********************************************************************
-* Main															*
-*********************************************************************/
+ * Main															*
+ *********************************************************************/
 
 class App extends Component{
     render(){
@@ -59,7 +60,9 @@ class App extends Component{
 ReactDom.render(
     <Provider store = {store}>
         <BrowserRouter>
-            <App/>
+            <MuiThemeProvider theme={themeGreen}>
+                <App/>
+            </MuiThemeProvider>
         </BrowserRouter>
     </Provider>,
     document.getElementById('web-page'));
