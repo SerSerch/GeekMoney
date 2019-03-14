@@ -1,14 +1,11 @@
 @import "vars";
-@import "fonts";
-@import "libs";
 
 html,
 body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	font-family: 'Roboto', sans-serif;
-	background-color: #fafafa;
+	background-color: $background-color;
 }
 
 .wrapper {
@@ -18,7 +15,7 @@ body {
 	min-width: 320px;
 	min-height: 320px;
 	margin: 0 auto;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: $default-font;
 }
 
 .container {
@@ -35,7 +32,6 @@ body {
 
 .footer {
 	flex: 0 0 auto;
-	text-align: center;
 }
 
 .link {
@@ -44,47 +40,45 @@ body {
 	outline: none;
 	color: #000;
 	&._s {
-		color: #fff;
+		color: $s-text-color;
 	}
 	&:hover,
 	&:active,
 	&:focus {
-		color: #ef6c00;
+		color: $p-color;
+		.icon {
+			fill: $p-color;
+		}
 	}
 }
 
-.paragraph._small {
-	font-size: 0.875rem;
-}
-
-._bg-s {
-	background-color: #283593;
+.paragraph {
+	&._small {
+		font-size: 0.875rem;
+		line-height: 1.0625rem;
+	}
+	&._smalled {
+		font-size: 0.75rem;
+	}
+	&._s {
+		color: $s-text-color;
+	}
+	&._link {
+		&:hover {
+			color: $s-active-color;
+		}
+	}
 }
 
 ._ellipsis {
-	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-.icon {
-	&._p {
-		fill: #fff;
-		&:hover {
-			fill: #ef6c00;
-			cursor: pointer;
-		}
-	}
-	&._s {
-		fill: #283593;
-		&:hover {
-			fill: #2135bc;
-			cursor: pointer;
-		}
-	}
-	&._disable {
-		fill: #949bca !important;
-	}
+._middle {
+	display: flex;
+	align-items: center;
 }
 
 @import "media";

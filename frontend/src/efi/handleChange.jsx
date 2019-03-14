@@ -1,11 +1,11 @@
-export const handleInputChange = (event, Class) => {
-    Class.setState({
+export const handleInputChange = function(event) {
+    this.setState({
         [event.target.name]: event.target.value
     });
 };
 
-export const handleCheckboxChange = (event, Class) => {
-    Class.setState({
+export const handleCheckboxChange = function(event) {
+    this.setState({
         [event.target.name]: event.target.checked
     });
 };

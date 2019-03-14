@@ -1,4 +1,4 @@
-import Landing from 'components/Landing';
+import Landing from 'layouts/Home';
 import Login from 'containers/UserLoginContainer';
 import Logup from 'containers/UserLogupContainer';
 import Score from 'containers/ScoreContainer';

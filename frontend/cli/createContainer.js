@@ -11,32 +11,39 @@ fs.mkdirSync(path.resolve(__dirname, '..', 'src', 'components', componentName));
 
 const componentCode = `import './${componentName}.scss';
 
-import React, { PureComponent } from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 
-class ${componentName} extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-  
-    render() {
-        return (
-            <div className="${nameLowerCase}">${componentName}</div>
-        );
-    }
+const ${componentName} = function(props) {
+    //props
+    const {myProps} = props;
+    //state
+    const [name, setName] = useState(null);
+    //mount and update effect
+    useEffect(function() {
+        /* DidMount */
+        
+        return function() {
+            /* Unmount */
+        }
+    }, []);
+    
+    return (
+        <Fragment>
+            /* context */
+        </Fragment>
+    );
 }
 
 export default ${componentName};`;
 
 const containerCode = `import React from 'react';
 import { connect } from 'react-redux';
-import { testSigningIn } from 'actions/${nameLowerCase}s';
+import { testSigningIn } from 'actions/${nameLowerCase}Action';
 import ${componentName} from 'components/${componentName}';
 
 
 function mapStateToProps(state, ownProps) {
     return {
-        //отвечает за то что будет в props компонента из store
         ...ownProps,
         ${nameLowerCase}: state.${nameLowerCase},
     }
@@ -44,7 +51,6 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, props) {
     return {
-        //отвечает за то что будет в props компонента из actions
         ...props,
         testSigningIn: (data) => dispatch(testSigningIn(data)),
     }

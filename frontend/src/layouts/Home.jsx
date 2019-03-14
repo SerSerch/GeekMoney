@@ -1,16 +1,10 @@
-import './Landing.scss';
+import React from 'react';
+import {Container, Item} from 'components/Content';
 
-import React, { PureComponent } from 'react';
-
-class Landing extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
-    render() {
-        return (
-            <div className="landing">
+const Home = function() {
+    return (
+        <Container box>
+            <Item noSpace>
                 <h2>GeekMoney - Личные финансы</h2>
                 <ul>
                     <li>Управляйте всеми своими учетными записями, бюджетами и счетами в одном месте</li>
@@ -19,9 +13,9 @@ class Landing extends PureComponent {
                     <li>Полнофункциональный на каждой платформе</li>
                     <li>Чрезвычайно универсальный и настраиваемый</li>
                 </ul>
-            </div>
-        );
-    }
-}
+            </Item>
+        </Container>
+    );
+};
 
-export default Landing;
+export default Home;
